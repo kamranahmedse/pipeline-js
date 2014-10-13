@@ -11,7 +11,14 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', 'HomeController@index');
+
+// User Routes
+Route::group(array('prefix' => 'user'), function () 
 {
-	return View::make('hello');
+	Route::get('register', array('uses' => 'UserController@register', 'as' => 'registerUser'));
+	Route::post('register', array('uses' => 'UserController@processRegister', 'as' => 'processRegisterUser'));
+
+	Route::get('login', array('uses' => 'UserController@login', 'as' => 'loginUser'));
+	Route::post('login', array('uses' => 'UserController@processLogin', 'as' => 'processLoginUser'));
 });
