@@ -27,7 +27,13 @@ class UserController extends Controller {
 
 	public function processLogin()
 	{
-		
+		if (Auth::attempt(array('username'=>Input::get('username'), 'password'=>Input::get('password')))) {
+		    return Redirect::to('user/dashboard');
+		} else {
+		    return Redirect::to('user/login')
+		        ->with('message', 'Your username/password combination was incorrect')
+		        ->withInput();
+		}	
 	}
 
 	public function register()
@@ -38,5 +44,16 @@ class UserController extends Controller {
 	public function login()
 	{
 		return View::make('front.login');
+	}
+
+	public function dashboard()
+	{
+		echo "You are on dashboard";
+	}
+
+	public function logout()
+	{
+		Auth::logout();
+		return Redirect::to('/');
 	}
 }

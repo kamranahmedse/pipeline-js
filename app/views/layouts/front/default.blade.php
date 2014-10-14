@@ -25,9 +25,13 @@
 							<a href="{{ URL::to('/') }}" id="logo" class="pull-left red">RasP.is</a>
 							<div class="navigation pull-right">
 								<ul>
-									<li class="pull-left"><a href="{{ URL::to('/') }}">Home</a></li>
-									<li class="pull-left"><a href="{{ URL::route('registerUser') }}">Register</a></li>
-									<li class="pull-left"><a href="{{ URL::route('loginUser') }}">Login</a></li>
+									@if( !Auth::check() )
+										<li class="pull-left">{{ HTML::link( URL::to('/'), 'Home' ) }}</li>
+										<li class="pull-left">{{ HTML::link( URL::route('registerUser'), 'Register' ) }}</li>
+										<li class="pull-left">{{ HTML::link( URL::route('loginUser'), 'Login' ) }}</li>
+									@else
+										<li class="pull-left">{{ HTML::link( URL::route('logoutUser'), 'Logout' ) }}</li>
+									@endif
 								</ul>
 								<div class="clearfix"></div>
 							</div>
