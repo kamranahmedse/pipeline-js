@@ -41,8 +41,8 @@
 									{{ Form::password('password', array('class'=> 'input-block span12 fat-input')) }}
 								</div>
 								<div class="span6">
-									{{ Form::label('confirmPassword', 'Confirm Password*') }}
-									{{ Form::password('confirmPassword', array('class'=> 'input-block span12 fat-input')) }}
+									{{ Form::label('password_confirmation', 'Confirm Password*') }}
+									{{ Form::password('password_confirmation', array('class'=> 'input-block span12 fat-input')) }}
 								</div>
 							</div>								
 							<div class="row-fluid m15">
@@ -53,14 +53,18 @@
 									<p class="register-alt">Already Registered? <a href="{{ URL::route('loginUser') }}">Login</a></p>
 								</div>
 							</div>
-							<div class="row-fluid">
-								<div class="alert error">
-									<button type="button" class="close" data-dismiss="alert">&times;</button>
-									<p>Invalid Username entered, it must not contain any spaces</p>
-									<p>Password must be 6 to 10 characters</p>
-									<p class="m0">Passwords don't match</p>
+
+							@if( $errors->has() )
+								<div class="row-fluid">
+									<div class="alert error">
+										<button type="button" class="close" data-dismiss="alert">&times;</button>
+										@foreach ($errors->all() as $error)
+											<p>{{ $error }}</p>
+										@endforeach
+									</div>
 								</div>
-							</div>
+							@endif
+
 						{{ Form::close() }}
 
 					</div>

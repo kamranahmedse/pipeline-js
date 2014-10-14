@@ -52,17 +52,20 @@
 								</div>
 								<div class="span3"></div>
 							</div>
-							<div class="row-fluid">
-								<div class="span3"></div>
-								<div class="span6">
-									<div class="alert error">
-									  <button type="button" class="close" data-dismiss="alert">&times;</button>
-									  <p class="m0">Invalid Username/Password entered.</p>
-									  <!-- <p class="m0">Have you <a href="#" class="emph">Forgot your username/password?</a></p> -->
+							
+							@if( Session::has('message') )
+								<div class="row-fluid">
+									<div class="span3"></div>
+									<div class="span6">
+										<div class="alert success">
+										  <button type="button" class="close" data-dismiss="alert">&times;</button>
+										  <p class="m0">{{ Session::get('message') }}</p>
+										</div>
 									</div>
+									<div class="span3"></div>
 								</div>
-								<div class="span3"></div>
-							</div>
+							@endif
+
 						{{ Form::close() }}
 
 					</div>
