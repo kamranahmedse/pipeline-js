@@ -24,7 +24,7 @@
 							<h2 class="p40">A revolutionary URL Shortener! Built just for you...</h2>
 							<p class="ledge-summary">
 								Manage, track and promote your URLs in a free and easy manner!
-								<a href="{{ URL::route('registerUser') }}">Register for free!</a>
+								{{ HTML::link(URL::route('registerUser'), 'Register for free!') }}
 							</p> 
 							<div class="row-fluid home-shortener-widget">
 								<input type="text" name="shortenUrlNow" placeholder="http://long/long/long/url/that/cant/be/rememberd/easily"  class="span10 pull-left" />

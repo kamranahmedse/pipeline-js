@@ -2,7 +2,8 @@
 
 class UserController extends Controller {
 
-	public function __construct( User $user ) {
+	public function __construct( User $user ) 
+	{
 	    $this->beforeFilter('csrf', array('on'=>'post'));
 	    $this->user = $user;
 	}
@@ -48,7 +49,7 @@ class UserController extends Controller {
 
 	public function dashboard()
 	{
-		echo "You are on dashboard";
+		return View::make('backend.dashboard-nourls');
 	}
 
 	public function logout()
