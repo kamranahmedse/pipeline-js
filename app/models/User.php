@@ -30,4 +30,26 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	public function bookmarks()
+	{
+		$this->hasMany('Bookmark')->whereNotNull('bookmarks.user_id');
+	}
+
+	public function userExists($userId)
+	{
+		return !!$this->find( $userId );
+	}
+
+    public function getUserBookmarks( $userId, $shortened = false )
+    {
+    	$query = $this->with('bookmarks');
+
+    	if ( !$shortened ) {
+    		$query->where('description', '=', '');
+    	} else {
+    		$query->where('description', '!=', '');
+    	}
+
+    	return $query->where('id', '=', $userId)->get();
+    }
 }

@@ -19,7 +19,7 @@ class CreateBookmarksTable extends Migration {
 			$table->string('shortened_code', 250);
 			$table->string('description', 2000)->nullable();
 			$table->integer('clicks')->unsigned()->default(0);
-			$table->integer('user_id')->unsigned();
+			$table->integer('user_id')->unsigned()->nullable();
 			$table->timestamps();
 		});
 	}

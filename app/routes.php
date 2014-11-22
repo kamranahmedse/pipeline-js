@@ -33,3 +33,5 @@ Route::group(array('prefix' => 'user'), function ()
 		Route::get('logout', array('uses' => 'UserController@logout', 'as' => 'logoutUser'));
 	});
 });
+
+Route::controller('/bookmarks', 'BookmarkController');
