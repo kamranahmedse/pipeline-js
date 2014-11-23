@@ -26,6 +26,9 @@ return array(
 	|
 	*/
 
-	'pagination' => 'pagination::slider-3',
+	// 'pagination' => 'pagination::slider-3',
+
+	// Introducing my custom paginator
+	'pagination' => 'backend.partials.pagination',
 
 );

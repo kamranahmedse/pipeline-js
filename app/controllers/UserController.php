@@ -8,6 +8,8 @@ class UserController extends BaseController {
 
 	    $this->user = $user;
 	    $this->bookmark = $bookmark;
+
+	    $this->userInfo = Auth::user();
 	}
 
 	public function processRegister()
@@ -51,8 +53,15 @@ class UserController extends BaseController {
 
 	public function dashboard()
 	{
-		return View::make('backend.dashboard-nourls');
-		return View::make('backend.dashboard-hasurls');
+
+		$bookmarks = $this->user->getBookmarks( $this->userInfo->id );
+
+		if ( $bookmarks ) {
+			return View::make('backend.dashboard-hasurls', compact('bookmarks'))
+						->nest('shortUrlList', 'backend.partials.shorturl-list', compact('bookmarks'));
+		} else {
+			return View::make('backend.dashboard-nourls');
+		}
 	}
 
 	public function profile()

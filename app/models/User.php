@@ -32,7 +32,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function bookmarks()
 	{
-		$this->hasMany('Bookmark')->whereNotNull('bookmarks.user_id');
+		return $this->hasMany('Bookmark')->whereNotNull('bookmarks.user_id');
 	}
 
 	public function userExists($userId)
@@ -40,16 +40,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return !!$this->find( $userId );
 	}
 
-    public function getBookmarks( $userId, $shortened = false )
+    public function getBookmarks( $userId, $savedOnes = false )
     {
-    	$query = $this->with('bookmarks');
+        $query = $this->find( $userId )
+                      ->bookmarks();
 
-    	if ( !$shortened ) {
-    		$query->where('description', '=', '');
-    	} else {
-    		$query->where('description', '!=', '');
-    	}
+        if ( $savedOnes ) {
+            $query->whereNull('description');
+        }
 
-    	return $query->where('id', '=', $userId)->get();
+        return $query->paginate(5);
     }
 }
