@@ -2,10 +2,12 @@
 
 class UserController extends BaseController {
 
-	public function __construct( User $user ) 
+	public function __construct( User $user, Bookmark $bookmark ) 
 	{
 	    $this->beforeFilter('csrf', array('on'=>'post'));
+
 	    $this->user = $user;
+	    $this->bookmark = $bookmark;
 	}
 
 	public function processRegister()
@@ -49,8 +51,8 @@ class UserController extends BaseController {
 
 	public function dashboard()
 	{
-		return View::make('backend.dashboard-hasurls');
 		return View::make('backend.dashboard-nourls');
+		return View::make('backend.dashboard-hasurls');
 	}
 
 	public function profile()

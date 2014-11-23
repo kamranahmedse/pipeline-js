@@ -20,4 +20,19 @@ class BookmarkController extends BaseController
     {
         return View::make('backend.bookmarks');
     }
+
+    public function shorten()
+    {
+        $validator = Validator::make(Input::all(), $this->bookmark->getShortValRules(), $this->bookmark->getShortValMessages());
+
+        if ( $validator->passes() ) {
+            
+            $code = $this->bookmark->shorten( Input::get('long_url'), $this->userInfo->id );
+
+            // die( $code );
+
+        } else {
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
+    }
 }

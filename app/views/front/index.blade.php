@@ -27,8 +27,13 @@
 								{{ HTML::link(URL::route('registerUser'), 'Register for free!') }}
 							</p> 
 							<div class="row-fluid home-shortener-widget">
-								<input type="text" name="shortenUrlNow" placeholder="http://long/long/long/url/that/cant/be/rememberd/easily"  class="span10 pull-left" />
-								<a class="btn btn-primary span2 pull-right" style="margin-left: 0px;" href="#"><i class="icon icon-resize-small icon-white"></i></a>
+
+								{{ Form::open(array('method' => 'post', 'url' => URL::route('shortenBookmark')) )}}
+									{{ Form::text('long_url', Input::old('long_url'), array('placeholder' => 'Put your long URL that is to be shortened, here!', 'class' => 'span10 pull-left' ))}}
+									{{ Form::submit('Shorten', array('class' => 'btn btn-primary span2 pull-right icon-resize-small icon icon-white')) }}
+									<!-- <a class="btn btn-primary span2 pull-right" style="margin-left: 0px;" href="#"><i class="icon icon-resize-small icon-white"></i></a> -->
+								{{ Form::close() }}
+
 							</div>
 						</div>
 					</div>

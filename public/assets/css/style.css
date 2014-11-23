@@ -1061,3 +1061,25 @@ h3.settings-head {
 	background: whitesmoke;
 	font-size: 14px;
 }
+
+.nourl-shortenbox {
+	padding: 30px !important;
+}
+
+.nourl-shortensubmit {
+	margin-top: 0px !important; 
+	margin-bottom: 0px !important;
+	border: 0px !important;
+}
+
+.nourl-form-container {
+	margin-bottom: 100px;
+}
+
+.nourl-error {
+	background: #C5285A;
+	color: #eee;
+	text-shadow: none;
+	font-size: 13px;
+	line-height: 30px;
+}

@@ -43,4 +43,6 @@ Route::group(array('prefix' => 'bookmark'), function(){
 	{
 		Route::get('/', array('uses' => 'BookmarkController@index', 'as' => 'userBookmarks'));
 	});
+
+	Route::post('shorten', array('uses' => 'BookmarkController@shorten', 'as' => 'shortenBookmark'));
 });

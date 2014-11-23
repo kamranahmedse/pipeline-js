@@ -40,7 +40,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return !!$this->find( $userId );
 	}
 
-    public function getUserBookmarks( $userId, $shortened = false )
+    public function getBookmarks( $userId, $shortened = false )
     {
     	$query = $this->with('bookmarks');
 
