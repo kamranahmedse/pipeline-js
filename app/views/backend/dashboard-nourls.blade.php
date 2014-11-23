@@ -17,7 +17,7 @@
 				<div class="span2"></div>
 				<div class="span8">
 					<div class="row-fluid" style="margin-top:100px;">
-						<input type="text" name="short_it" placeholder="http://www.longurltobeshorten.ed/some/extended/path/" class="short_it span12" style="padding: 30px;" />
+						<input type="text" name="short_it" placeholder="Put your long URL that is to be shortened, here!" class="short_it span12" style="padding: 30px;" />
 					</div>
 					<div class="row-fluid">
 						<a href="#" class="span12 createEventBtn" style="margin-top:0px;">Shorten it</a>

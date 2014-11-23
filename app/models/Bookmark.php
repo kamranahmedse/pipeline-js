@@ -26,7 +26,7 @@ class Bookmark extends Eloquent
         if ( $toDelete && $toDelete->user_id == $userId ) {
             
             if ( $toDelete->delete() ) {
-                return true
+                return true;
             }
         }
      

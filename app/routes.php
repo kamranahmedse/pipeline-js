@@ -30,8 +30,17 @@ Route::group(array('prefix' => 'user'), function ()
 	Route::group(array('before' => 'auth'), function()
 	{
 		Route::get('dashboard', array('uses' => 'UserController@dashboard', 'as' => 'userDashboard'));
+		Route::get('profile', array('uses' => 'UserController@profile', 'as' => 'userProfile'));
 		Route::get('logout', array('uses' => 'UserController@logout', 'as' => 'logoutUser'));
 	});
 });
 
-Route::controller('/bookmarks', 'BookmarkController');
+// Bookmarks Routes
+Route::group(array('prefix' => 'bookmark'), function(){
+
+	// Only users can access this
+	Route::group(array('before' => 'auth'), function()
+	{
+		Route::get('/', array('uses' => 'BookmarkController@index', 'as' => 'userBookmarks'));
+	});
+});

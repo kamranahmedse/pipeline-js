@@ -49,12 +49,18 @@ class UserController extends BaseController {
 
 	public function dashboard()
 	{
+		return View::make('backend.dashboard-hasurls');
 		return View::make('backend.dashboard-nourls');
+	}
+
+	public function profile()
+	{
+		return View::make('backend.profile');
 	}
 
 	public function logout()
 	{
 		Auth::logout();
-		return Redirect::to('/');
+		return Redirect::route('loginUser');
 	}
 }

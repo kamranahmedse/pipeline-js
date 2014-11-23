@@ -6,13 +6,75 @@
 		RasP.is 
 		@yield('title')
 	</title>
+
 	@section('headAssets')
 		<link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap-responsive.min.css') }}">
 		<link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ URL::to('assets/css/style.css') }}">
 	@show
+	
 </head>
 <body>
+
+	<!-- Modals -->
+
+	<div class="modal fade" id="remove-event-modal">
+		<div class="modal-header">
+			 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			 <h1>Remove URL</h1>
+		</div>
+		<div class="modal-body">
+			<p>The action can't be undone. You won't be able to use the short URL again. If you had used this shortened URL anywhere or had given this to any one, it won't work again.</p>
+
+			<p>Are you sure to remove this URL?</p>
+		</div>
+		<div class="modal-footer">
+		    <a href="#" class="button small-button" data-dismiss="modal">Close</a>
+			<a href="#" class="button red-button small-button">Delete</a>
+		</div>
+	</div>
+
+	<div class="modal fade unstyled light_grey" id="new-event-modal">
+		<div class="modal-header unstyled">
+			 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			 <h1>Store a new Bookmark</h1>
+		</div>
+		<div class="modal-body">
+			<div class="row-fluid">
+				<div class="span8 offset2">
+					<div class="new-event-form">
+						<label for="url_title" class="event-title">Title</label>
+						<input type="text" name="url_title" class="span12" />
+
+						<label for="url" class="event-date">URL</label>
+						<div class="input-prepend span12" style="margin-left: 0px;">
+							<input type="text" name="url" class="span11" style="width: 87%;" />
+							<a class="btn btn-primary add-on" style="padding: 14px;"><i class="icon icon-white icon-resize-small"></i></a>
+						</div>
+
+						<label for="shortened_url" class="event-date">Shortened URL</label>
+						<input type="text" name="shortened_url" class="span12" readonly="readonly" style="border: 1px solid white;" />
+						
+					</div>
+				</div>
+				<div class="span2"></div>
+			</div>
+		</div>
+		<div class="modal-footer unstyled" style="margin-bottom:20px;">
+		    <a href="#" class="button small-button" data-dismiss="modal">Cancel</a>
+			<a href="#" class="button red-button small-button">Create</a>
+		</div>
+	</div>	
+
+	<!-- Modals End -->
+
+	{{--*/ 
+		$currentRoute = Route::current()->getName();
+
+		$dashboardPage = ( $currentRoute == 'userDashboard' ) ? 'active' : '';
+		$bookmarksPage = ( $currentRoute == 'userBookmarks' ) ? 'active' : '';
+		$profilePage = ( $currentRoute == 'userProfile' ) ? 'active' : '';
+	/*--}}
 
 	<div class="page-wrapper user-logged-in">
 
@@ -24,10 +86,10 @@
 				</div>
 				<div class="span10">
 					<ul class="user-menu m0 pull-right">
-						<li class="pull-left"><a href="#" class="active">Dashboard</a></li>
-						<li class="pull-left"><a href="#">Bookmarks</a></li>
-						<li class="pull-left"><a href="#">Profile</a></li>
-						<li class="pull-left"><a href="#">Logout</a></li>
+						<li class="pull-left">{{ HTML::link(URL::route('userDashboard'), 'Dashboard', array('class' => $dashboardPage )) }}</li>
+						<li class="pull-left">{{ HTML::link(URL::route('userBookmarks'), 'Bookmarks', array('class' => $bookmarksPage )) }}</li>
+						<li class="pull-left">{{ HTML::link(URL::route('userProfile'), 'Profile', array('class' => $profilePage )) }}</li>
+						<li class="pull-left">{{ HTML::link( URL::route('logoutUser'), 'Logout' ) }}</li>
 					</ul>
 				</div>
 			</div>
@@ -78,7 +140,7 @@
 				</div>
 			</div>
 			<div class="row-fluid">
-				<p class="credits span12">&copy; 2014, All rights Reserved by <span class="emph">RasP.is</span></p>
+				<p class="credits span12">&copy; {{ date('Y') }}, All rights Reserved by <span class="emph">RasP.is</span></p>
 			</div>				
 		</div>
 	</div>
