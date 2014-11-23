@@ -16,24 +16,33 @@
 			<div class="row-fluid">
 				<div class="span2"></div>
 				<div class="span8 nourl-form-container">
-				{{ Form::open(array('method' => 'post', 'url' => URL::route('shortenBookmark'))) }}
-					<div class="row-fluid" style="margin-top:100px;">
-						{{ Form::text('long_url', Input::old('long_url', ''), array('autofocus' => 'autofocus', 'placeholder' => 'Put your long URL that is to be shortened, here!', 'class' => 'short_it span12 nourl-shortenbox')) }}
-					</div>
-					<div class="row-fluid">
-						{{ Form::submit('Shorten It', array('class' => 'span12 createEventBtn nourl-shortensubmit')) }}
-					</div>
-				{{ Form::close() }}
+					{{ Form::open(array('method' => 'post', 'url' => URL::route('shortenBookmark'))) }}
+						<div class="row-fluid" style="margin-top:100px;">
+							{{ Form::text('long_url', Input::old('long_url', ''), array( 'placeholder' => 'Put your long URL that is to be shortened, here!', 'class' => 'short_it span12 nourl-shortenbox')) }}
+						</div>
+						<div class="row-fluid">
+							{{ Form::submit('Shorten It', array('class' => 'span12 createEventBtn nourl-shortensubmit')) }}
+						</div>
+					{{ Form::close() }}
 
-				@if( $errors->has() )
-					<div class="row-fluid">
-						@foreach( $errors->all() as $error)
+					@if( $errors->has() )
+						<div class="row-fluid">
+							@foreach( $errors->all() as $error)
+								<div class="alert alert-error nourl-error">
+									{{ $error }}
+								</div>
+							@endforeach
+						</div>
+					@endif
+
+					@if( Session::has('message') )
+						<div class="row-fluid">
 							<div class="alert alert-error nourl-error">
-								{{ $error }}
+								{{ Session::get('message') }}
 							</div>
-						@endforeach
-					</div>
-				@endif
+						</div>
+					@endif
+
 				</div>
 				<div class="span2"></div>
 			</div>

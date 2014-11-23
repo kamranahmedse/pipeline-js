@@ -27,9 +27,15 @@ class BookmarkController extends BaseController
 
         if ( $validator->passes() ) {
             
-            $code = $this->bookmark->shorten( Input::get('long_url'), $this->userInfo->id );
+            $userId = isset( $this->userInfo->id ) ? $this->userInfo->id : null;
 
-            // die( $code );
+            $code = $this->bookmark->shorten( Input::get('long_url'), $userId );
+
+            // Put the shortened URL in place of long_url
+            // ...so that it may populate in the long URL field
+            Input::replace(array( 'long_url' => Config::get('raspis.url') . $code ));
+
+            return Redirect::back()->withInput()->withMessage('URL successfully shortened.');
 
         } else {
             return Redirect::back()->withInput()->withErrors($validator);

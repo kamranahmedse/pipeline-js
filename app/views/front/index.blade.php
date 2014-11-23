@@ -33,6 +33,24 @@
 									{{ Form::submit('Shorten', array('class' => 'btn btn-primary span2 pull-right icon-resize-small icon icon-white')) }}
 									<!-- <a class="btn btn-primary span2 pull-right" style="margin-left: 0px;" href="#"><i class="icon icon-resize-small icon-white"></i></a> -->
 								{{ Form::close() }}
+								
+								@if( $errors->has() )
+									<div class="row-fluid">
+										@foreach( $errors->all() as $error)
+											<div class="alert alert-error nourl-error">
+												{{ $error }}
+											</div>
+										@endforeach
+									</div>
+								@endif
+
+								@if( Session::has('message') )
+									<div class="row-fluid">
+										<div class="alert alert-success nourl-error">
+											{{ Session::get('message') }}
+										</div>
+									</div>
+								@endif
 
 							</div>
 						</div>

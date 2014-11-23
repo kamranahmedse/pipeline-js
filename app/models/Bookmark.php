@@ -61,8 +61,34 @@ class Bookmark extends Eloquent
         return $shortCode;
     }
 
+    public function findPotentialShortcode( $url )
+    {
+        $bookmark = $this->where('url', '=', $url)
+                          ->whereNull('user_id')
+                          ->select('shortened_code')
+                          ->first();
+
+        if ( $bookmark ) {
+            return $bookmark->shortened_code;
+        }
+
+        return false;
+    }
+
     public function shorten( $longUrl, $userId = false )
-    {        
+    {
+        // If the user is not logged in
+        // ..we don't need a new entry if the URL provided was
+        // ..already shortened by someone else
+        if( !$userId ) {
+            
+            $shortCode = $this->findPotentialShortcode( $longUrl );
+            
+            if ( $shortCode ) {
+                return $shortCode;
+            }
+        }
+
         $shortCode = $this->generateShortCode();
 
         $this->url = $longUrl;

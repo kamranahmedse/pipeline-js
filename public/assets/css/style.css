@@ -1083,3 +1083,11 @@ h3.settings-head {
 	font-size: 13px;
 	line-height: 30px;
 }
+
+.alert.alert-success.nourl-success {
+	background: #747969;
+	color: #eee;
+	text-shadow: none;
+	font-size: 13px;
+	line-height: 30px;
+}
