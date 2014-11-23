@@ -49,6 +49,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             $query->whereNull('description');
         }
 
-        return $query->paginate(5);
+        return $query->paginate(10);
     }
 }
