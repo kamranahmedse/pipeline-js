@@ -6,11 +6,12 @@ class Bookmark extends Eloquent
     protected $shuffleData = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
     protected $shortenRules = array(
-        'long_url' => 'required|url'
+        'long_url' => 'required|url|not_already_shortened'
     );
 
     protected $shortenMessages = array(
-        'url' => 'Invalid URL provided in :attribute'
+        'url' => 'Invalid URL provided in :attribute',
+        'not_already_shortened' => 'Oh snap! The URL you provided is already shortened.'
     );
 
     public function user()

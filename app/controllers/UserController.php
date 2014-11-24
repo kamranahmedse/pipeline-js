@@ -56,7 +56,7 @@ class UserController extends BaseController {
 
 		$bookmarks = $this->user->getBookmarks( $this->userInfo->id );
 
-		if ( $bookmarks ) {
+		if ( count( $bookmarks ) !== 0 ) {
 			return View::make('backend.dashboard-hasurls', compact('bookmarks'))
 						->nest('shortUrlList', 'backend.partials.shorturl-list', compact('bookmarks'));
 		} else {
