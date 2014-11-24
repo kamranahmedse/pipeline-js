@@ -57,3 +57,8 @@
     </div>
 
 @stop
+
+@section('footerAssets')
+    @parent
+    {{ HTML::script( URL::to('assets/scripts/modules/app.js')) }}
+@stop

@@ -18,7 +18,7 @@
 
 	<!-- Modals -->
 
-	<div class="modal fade" id="remove-event-modal">
+	<div class="modal fade remove-modal" id="remove-event-modal">
 		<div class="modal-header">
 			 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			 <h1>Remove URL</h1>
@@ -30,7 +30,7 @@
 		</div>
 		<div class="modal-footer">
 		    <a href="#" class="button small-button" data-dismiss="modal">Close</a>
-			<a href="#" class="button red-button small-button">Delete</a>
+			<a href="{{ URL::route('deleteBookmark') }}" class="button red-button small-button modal-delete-url" data-id="0">Delete</a>
 		</div>
 	</div>
 

@@ -41,4 +41,22 @@ class BookmarkController extends BaseController
             return Redirect::back()->withInput()->withErrors($validator);
         }
     }
+
+    public function delete()
+    {
+        $urlId = Input::get('id');
+
+        if ( $urlId ) {
+
+            $result = $this->bookmark->deleteBookmark( $urlId, $this->userInfo->id );
+
+            if ( $result ) {
+                return Redirect::back()->withMessage('URL successfully removed!');
+            } else {
+                return Redirect::back()->withMessage('Error! Problem occured while deleting your URL.');
+            }
+        }
+
+        return App::abort(404);
+    }
 }

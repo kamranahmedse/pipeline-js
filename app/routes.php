@@ -42,6 +42,7 @@ Route::group(array('prefix' => 'bookmark'), function(){
 	Route::group(array('before' => 'auth'), function()
 	{
 		Route::get('/', array('uses' => 'BookmarkController@index', 'as' => 'userBookmarks'));
+		Route::get('/delete', array('uses' => 'BookmarkController@delete', 'as' => 'deleteBookmark'));
 	});
 
 	Route::post('shorten', array('uses' => 'BookmarkController@shorten', 'as' => 'shortenBookmark'));
