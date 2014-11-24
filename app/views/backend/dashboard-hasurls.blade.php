@@ -16,12 +16,31 @@
                         <div class="events-list">
                             <div class="row-fluid">
                                 <div class="header-shorten-wrap">
-                                    <input type="text" name="long_url" class="long_url span10" style="padding: 32px 10px 30px; margin: 0px; display: block; float: left;" placeholder="Enter your URL to be shortened here!">
-                                    <a class="button red-button dashboard-head-btn" style="margin-left: 0px; cursor: pointer; box-shadow: none; display: block; float: right; width: 89px; border-radius: 0px; padding: 0px; height: 62px; line-height: 62px;">Shorten</a>
+
+                                    {{ Form::open(array('url' => URL::route('shortenBookmark'), 'method' => 'post', 'class' => 'hasurls-shortenform' )) }}
+                                        {{ Form::text('long_url', Input::old('long_url'), array('class' => 'long_url span10 hasurls-shortenbox', 'placeholder' => 'Put your long URL that is to be shortened, here!')) }}
+                                        {{ Form::submit('Shorten', array('class' => 'button red-button dashboard-head-btn dashboard-hasurls-submitbtn'))}}
+                                    {{ Form::close() }}
+
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
                         </div>
+
+                        @if( $errors->has() )
+                            @foreach ($errors->all() as $error)
+                                <div class="row-fluid shorten-wrap-msg error">
+                                    <div class="">{{ $error }}</div>
+                                </div>
+                            @endforeach
+                        @endif
+
+                        @if( Session::has('message') )
+                            <div class="row-fluid shorten-wrap-msg success">
+                                <div class="">{{ Session::get('message') }}</div>
+                            </div>
+                        @endif
+
                     </div>
 
                     {{ $shortUrlList }}
@@ -32,13 +51,6 @@
             <div class="row-fluid">
                 <div class="span10 offset1">
                     {{ $bookmarks->links() }}
-                    <!-- <ul class="pagination">
-                        <li class="pull-left"><a href="#">«</a></li>
-                        <li class="pull-left"><a href="#" class="active-page">1</a></li>
-                        <li class="pull-left"><a href="#">2</a></li>
-                        <li class="pull-left"><a href="#">3</a></li>
-                        <li class="pull-left"><a href="#">»</a></li>
-                    </ul> -->
                 </div>
             </div>
         </div>
