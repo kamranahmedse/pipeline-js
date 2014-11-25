@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>
 		RasP.is 
 		@yield('title')
@@ -11,7 +12,14 @@
 		<link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap-responsive.min.css') }}">
 		<link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap.min.css') }}">
 		<link rel="stylesheet" href="{{ URL::to('assets/css/style.css') }}">
+		<link rel="stylesheet" href="{{ URL::to('assets/css/jquery.toast.min.css') }}">
+
 	@show
+
+	<script type="text/javascript">
+		var shortenBookmarkUrl = "{{ URL::route('shortenBookmark') }}";
+		var saveBookmarkUrl = "{{ URL::route('saveBookmark') }}";
+	</script>
 	
 </head>
 <body>
@@ -43,18 +51,20 @@
 			<div class="row-fluid">
 				<div class="span8 offset2">
 					<div class="new-event-form">
+						
+						{{ Form::hidden('_token', csrf_token() )}}
+
 						<label for="url_title" class="event-title">Title</label>
 						<input type="text" name="url_title" class="span12" />
 
-						<label for="url" class="event-date">URL</label>
+						<label for="url" class="event-date">Long URL</label>
 						<div class="input-prepend span12" style="margin-left: 0px;">
 							<input type="text" name="url" class="span11" style="width: 87%;" />
-							<a class="btn btn-primary add-on" style="padding: 14px;"><i class="icon icon-white icon-resize-small"></i></a>
+							<a class="btn btn-primary add-on instantShorten" style="padding: 14px;"><i class="icon icon-white icon-resize-small"></i></a>
 						</div>
 
 						<label for="shortened_url" class="event-date">Shortened URL</label>
 						<input type="text" name="shortened_url" class="span12" readonly="readonly" style="border: 1px solid white;" />
-						
 					</div>
 				</div>
 				<div class="span2"></div>
@@ -155,7 +165,7 @@
 	@section('footerAssets')
 		<script type="text/javascript" src="{{ URL::to('assets/scripts/jq.js') }}"></script>
 		<script type="text/javascript" src="{{ URL::to('assets/scripts/bootstrap.min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::to('assets/scripts/main.js') }}"></script>
+		<script type="text/javascript" src="{{ URL::to('assets/scripts/jquery.toast.min.js') }}"></script>
 	@show
 
 </body>

@@ -21,6 +21,33 @@ class BookmarkController extends BaseController
         return View::make('backend.bookmarks');
     }
 
+    public function saveBookmark()
+    {
+        $validator = Validator::make( Input::all(), $this->bookmark->getSaveRules() );
+
+        if ( $validator->passes() ) {
+            
+            $userId = isset( $this->userInfo->id ) ? $this->userInfo->id : null;
+
+            $saved = $this->bookmark->saveBookmark( Input::all(), $userId );
+
+            $message = $saved ? array('success' => 'Bookmark saved successfully.') : array('error' => 'Unable to save your bookmark. Please try again!');
+
+            if ( Request::ajax() ) {
+                return Response::json( $message );
+            } else {
+                return Redirect::back()->withMessage('URL successfully shortened.');
+            }
+
+        } else {
+            if ( Request::ajax() ) {
+                return Response::json( $validator->messages() );
+            } else {
+                return Redirect::back()->withInput()->withErrors($validator);
+            }
+        }   
+    }
+
     public function shorten()
     {
         $validator = Validator::make(Input::all(), $this->bookmark->getShortValRules(), $this->bookmark->getShortValMessages());
@@ -29,16 +56,24 @@ class BookmarkController extends BaseController
             
             $userId = isset( $this->userInfo->id ) ? $this->userInfo->id : null;
 
-            $code = $this->bookmark->shorten( Input::get('long_url'), $userId );
+            $code = $this->bookmark->shorten( Input::get('long_url'), $userId, Input::get('do_save', true) );
 
             // Put the shortened URL in place of long_url
             // ...so that it may populate in the long URL field
             Input::replace(array( 'long_url' => Config::get('raspis.url') . $code ));
 
-            return Redirect::back()->withInput()->withMessage('URL successfully shortened.');
+            if ( Request::ajax() ) {
+                return Response::json(array('short_url' => Config::get('raspis.url') . $code));
+            } else {
+                return Redirect::back()->withInput()->withMessage('URL successfully shortened.');
+            }
 
         } else {
-            return Redirect::back()->withInput()->withErrors($validator);
+            if ( Request::ajax() ) {
+                return Response::json( $validator->messages() );
+            } else {
+                return Redirect::back()->withInput()->withErrors($validator);
+            }
         }
     }
 

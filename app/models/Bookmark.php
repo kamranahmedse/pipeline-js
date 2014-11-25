@@ -9,6 +9,11 @@ class Bookmark extends Eloquent
         'long_url' => 'required|url|not_already_shortened'
     );
 
+    protected $saveRules = array(
+        'title' => 'required',
+        'long_url' => 'required|url|not_already_shortened'
+    );
+
     protected $shortenMessages = array(
         'url' => 'Invalid URL provided in :attribute',
         'not_already_shortened' => 'Oh snap! The URL you provided is already shortened.'
@@ -22,6 +27,11 @@ class Bookmark extends Eloquent
     public function getShortValRules()
     {
         return $this->shortenRules;
+    }
+
+    public function getSaveRules()
+    {
+        return $this->saveRules;
     }
 
     public function getShortValMessages()
@@ -76,7 +86,17 @@ class Bookmark extends Eloquent
         return false;
     }
 
-    public function shorten( $longUrl, $userId = false )
+    public function saveBookmark( $params, $userId)
+    {
+        $this->title = $params['title'];
+        $this->url = $params['long_url'];
+        $this->shortened_code = $params['shortened_code'];
+        $this->user_id = $userId;
+
+        return true;
+    }
+
+    public function shorten( $longUrl, $userId = false, $doSave )
     {
         // If the user is not logged in
         // ..we don't need a new entry if the URL provided was
@@ -92,19 +112,17 @@ class Bookmark extends Eloquent
 
         $shortCode = $this->generateShortCode();
 
-        $this->url = $longUrl;
-        $this->shortened_code = $shortCode;
-
-        if ( $userId ) {
-            $this->user_id = $userId;  
-        } 
-
-        $bookmark = $this->save();
-
-        if ( $bookmark ) {
+        if( !$doSave ) {
             return $shortCode;
         }
 
-        return false;
+        $this->url = $longUrl;
+        $this->shortened_code = $shortCode;
+        if ( $userId ) {
+            $this->user_id = $userId;  
+        }
+        $bookmark = $this->save();
+
+        return $bookmark ? $shortCode  : false;
     }
 }
