@@ -1135,3 +1135,10 @@ h3.settings-head {
 	height: 62px !important; 
 	line-height: 62px !important;
 }
+
+.modal-error {
+	margin-bottom: 5px;
+	background: #E73B4F;
+	color: #eee;
+	text-shadow: none;
+}

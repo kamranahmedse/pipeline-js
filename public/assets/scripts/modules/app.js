@@ -6,6 +6,8 @@ var Shortener = {
 
     bindUI : function () {
 
+        var self = this;
+
         $(document).on('click', '.removeUrl', function ( e ) {
 
             e.preventDefault();
@@ -32,6 +34,35 @@ var Shortener = {
         $('.remove-modal').on('hide', function () {
             $(this).find('.modal-delete-url').data('id', 0);
         });
+
+        $('.saveBookmark').on('click', function ( e ) {
+            
+            e.preventDefault();
+
+            if ( self.validateSaveBookmark() ) {
+                self.saveBookmark();
+            };
+        });
+    },
+
+    validateSaveBookmark : function () {
+
+        var noError = true;
+
+        if ( $('input[name=url_title]').val() ) {
+            $('.modal-errors .span8').html('<div class="alert alert-error modal-error">Title for the URL must be provided.</div>');
+            noError = false;
+        };
+
+        if ( $('input[name=url]').val() ) {
+
+        };
+
+        return noError;
+    },
+
+    saveBookmark : function () {
+
     }
 }
 

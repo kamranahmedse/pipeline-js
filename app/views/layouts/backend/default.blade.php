@@ -59,10 +59,17 @@
 				</div>
 				<div class="span2"></div>
 			</div>
+			<div class="row-fluid modal-errors hide">
+				<div class="span8 offset2">
+					<div class="alert alert-error modal-error">Title must be provided.</div>
+					<div class="alert alert-error modal-error">URL must be provided.</div>
+				</div>
+				<div class="span2"></div>
+			</div>
 		</div>
 		<div class="modal-footer unstyled" style="margin-bottom:20px;">
 		    <a href="#" class="button small-button" data-dismiss="modal">Cancel</a>
-			<a href="#" class="button red-button small-button">Create</a>
+			<a href="#" class="button red-button small-button saveBookmark">Create</a>
 		</div>
 	</div>	
 

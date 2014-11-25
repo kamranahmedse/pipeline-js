@@ -53,7 +53,6 @@ class UserController extends BaseController {
 
 	public function dashboard()
 	{
-
 		$bookmarks = $this->user->getBookmarks( $this->userInfo->id );
 
 		if ( count( $bookmarks ) !== 0 ) {
