@@ -18,7 +18,10 @@ class BookmarkController extends BaseController
 
     public function index()
     {
-        return View::make('backend.bookmarks');
+        $bookmarks = $this->user->getBookmarks( $this->userInfo->id, true);
+
+        return View::make('backend.bookmarks', compact('bookmarks'))
+                    ->nest('savedBookmarks', 'backend.partials.savedurl-list', compact('bookmarks'));
     }
 
     public function saveBookmark()
@@ -34,9 +37,10 @@ class BookmarkController extends BaseController
             $message = $saved ? array('success' => 'Bookmark saved successfully.') : array('error' => 'Unable to save your bookmark. Please try again!');
 
             if ( Request::ajax() ) {
+                Session::flash('message', 'URL successfully saved.');
                 return Response::json( $message );
             } else {
-                return Redirect::back()->withMessage('URL successfully shortened.');
+                return Redirect::back()->withMessage('URL successfully saved.');
             }
 
         } else {

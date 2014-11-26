@@ -23,314 +23,39 @@
                                 </div>
                             </div>
                         </div>
+
+                        @if( $errors->has() )
+                            @foreach ($errors->all() as $error)
+                                <div class="row-fluid shorten-wrap-msg error">
+                                    <div class="">{{ $error }}</div>
+                                </div>
+                            @endforeach
+                        @endif
+
+                        @if( Session::has('message') )
+                            <div class="row-fluid shorten-wrap-msg success">
+                                <div class="">{{ Session::get('message') }}</div>
+                            </div>
+                        @endif
                     </div>
 
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>                      
-
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>
-
-                    
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="events-list p10" style="margin-bottom: 10px;">
-                        <table class="events-list">
-                            <tbody>
-                                <tr>
-                                    <td class="wide">
-                                        <span class="event-title">Link to my latest Blog Post</span>
-                                        <span class="event-location muted"><a href="#">http://kamranahmed.info/event-bubbling-and-how-can-it-be-prevented/</a></span>
-                                    </td>
-                                    <td>
-                                        <span class="block">
-                                            <span class="date block">
-                                                <span class="date-value"><a href="#">http://rasp.is/shortcode/</a></span>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td class="text-right">
-                                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
-
-                                        <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10">Remove</a></span>
-
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="events-list p10 single-url-item loading-urls-msg">
-                        <span class="">Loading ...</span>
-                    </div>
-
+                    {{ $savedBookmarks }}
                 </div>
                 <div class="span1"></div>
+            </div>
+            
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    {{ $bookmarks->links() }}
+                </div>
             </div>
         </div>
     </div>
     
+@stop
+
+
+@section('footerAssets')
+    @parent
+    {{ HTML::script( URL::to('assets/scripts/modules/app.js')) }}
 @stop
