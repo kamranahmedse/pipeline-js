@@ -1,5 +1,13 @@
 var Shortener = {
 
+    searchTermErrors : [
+        'Hey! Where is the search term',
+        'No search term! Are you serious? You want me to search ..and you don\'t know what?',
+        'Watchout! you missed the search term.',
+        'No search term! You forgot to enter or are you in love with that fat button over there',
+        'Hey, You missed that search term!'
+    ],
+
     init : function () {
         
         this.bindUI();
@@ -62,6 +70,15 @@ var Shortener = {
 
             if ( self.validateSaveBookmark() ) {
                 self.saveBookmark();
+            };
+        });
+
+        $('.search-bookmark').on('click', function ( e ) {
+
+            if ( !$('input[name="term"]').val() ) {
+                e.preventDefault();
+                $('.js-errors').html(self.searchTermErrors[ Math.floor((Math.random() * 4)) ]);
+                $('.js-errors').show();
             };
         });
     },

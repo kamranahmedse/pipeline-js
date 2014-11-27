@@ -40,7 +40,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return !!$this->find( $userId );
 	}
 
-    public function getBookmarks( $userId, $savedOnes = false )
+    public function getBookmarks( $userId, $savedOnes = false, $params = array() )
     {
         $query = $this->find( $userId )
                       ->bookmarks();
@@ -51,6 +51,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             $query->whereNotNull('shortened_code');
         }
 
-        return $query->orderBy('created_at', 'desc')->paginate(10);
+        $query->orderBy('created_at', 'desc');
+
+        if ( isset($params['term']) ) {
+            $query->where('description', 'like', '%' . $params['term'] . '%');
+
+            // Override the pagination and show all the URLs at once
+            return $query->paginate( 10000 );
+        }
+        
+        return $query->paginate(10);
     }
 }

@@ -9,7 +9,11 @@
 
             <div class="span3">
                 <div class="pull-right">
-                    <a href="#new-event-modal" class="button red-button dashboard-head-btn" data-toggle="modal">+ New URL</a>
+                    @if( $page == 'search' )
+                        <a href="{{ URL::route('userBookmarks') }}" class="button red-button dashboard-head-btn" data-toggle="modal">&larr; Back to Bookmarks</a>
+                    @else
+                        <a href="#new-event-modal" class="button red-button dashboard-head-btn" data-toggle="modal">+ New URL</a>
+                    @endif
                 </div>
             </div>
 

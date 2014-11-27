@@ -24,6 +24,15 @@ class BookmarkController extends BaseController
                     ->nest('savedBookmarks', 'backend.partials.savedurl-list', compact('bookmarks'));
     }
 
+    public function search()
+    {
+        $term = Input::get('term', '');
+        $bookmarks = $this->user->getBookmarks( $this->userInfo->id, true, array('term' => $term) );
+
+        return View::make('backend.bookmarks', compact('bookmarks'))
+                    ->nest('savedBookmarks', 'backend.partials.savedurl-list', compact('bookmarks'));
+    }
+
     public function saveBookmark()
     {
         $validator = Validator::make( Input::all(), $this->bookmark->getSaveRules() );

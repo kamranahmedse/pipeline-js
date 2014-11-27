@@ -10,7 +10,9 @@
                     <td>
                         <span class="block">
                             <span class="date block">
-                                <span class="date-value"><a href="#">{{ Config::get('raspis.url') . $bookmark->shortened_code}}</a></span>
+                                @if ( $bookmark->shortened_code )
+                                    <span class="date-value"><a target="_blank" href="{{ Config::get('raspis.url') . $bookmark->shortened_code}}">{{ Config::get('raspis.url') . $bookmark->shortened_code}}</a></span>
+                                @endif
                             </span>
                         </span>
                     </td>
