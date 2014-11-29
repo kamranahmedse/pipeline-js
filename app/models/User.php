@@ -57,7 +57,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             $query->where('description', 'like', '%' . $params['term'] . '%');
 
             // Override the pagination and show all the URLs at once
-            return $query->paginate( 10000 );
+            // return $query->paginate( 10000 );
         }
         
         return $query->paginate(10);
