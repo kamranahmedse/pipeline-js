@@ -44,6 +44,7 @@ Route::group(array('prefix' => 'bookmark'), function(){
 	{
 		Route::get('delete', array('uses' => 'BookmarkController@delete', 'as' => 'deleteBookmark'));
 		Route::post('save', array('uses' => 'BookmarkController@saveBookmark', 'as' => 'saveBookmark'));
+		Route::post('fetch', array('uses' => 'BookmarkController@fetch', 'as' => 'fetchBookmark'));
 		Route::get('search', array('uses' => 'BookmarkController@search', 'as' => 'searchBookmark'));
 	});
 

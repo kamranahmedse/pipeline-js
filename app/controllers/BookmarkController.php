@@ -33,6 +33,14 @@ class BookmarkController extends BaseController
                     ->nest('savedBookmarks', 'backend.partials.savedurl-list', compact('bookmarks'));
     }
 
+    public function fetch()
+    {
+        $id = Input::get('id');
+        $bookmark = $this->bookmark->fetch( $id, $this->userInfo->id );
+
+        return Response::json($bookmark);
+    }
+
     public function saveBookmark()
     {
         $validator = Validator::make( Input::all(), $this->bookmark->getSaveRules() );

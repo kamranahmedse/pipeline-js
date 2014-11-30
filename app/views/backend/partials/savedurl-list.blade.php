@@ -18,7 +18,7 @@
                     </td>
                     <td class="text-right">
                         <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>   
-                        <span class="edit"><a href="#" class="green-button button small-button">Edit</a></span>
+                        <span class="edit"><a href="#" class="green-button button small-button edit-bookmark" data-id="{{ $bookmark->id }}">Edit</a></span>
 
                         <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10 removeUrl" data-id="{{ $bookmark->id }}">Remove</a></span>
 

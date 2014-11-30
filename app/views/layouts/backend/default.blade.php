@@ -18,6 +18,7 @@
 
 	<script type="text/javascript">
 		var shortenBookmarkUrl = "{{ URL::route('shortenBookmark') }}";
+		var fetchBookmarkUrl = "{{ URL::route('fetchBookmark') }}";
 		var saveBookmarkUrl = "{{ URL::route('saveBookmark') }}";
 	</script>
 	
@@ -79,7 +80,7 @@
 		</div>
 		<div class="modal-footer unstyled" style="margin-bottom:20px;">
 		    <a href="#" class="button small-button" data-dismiss="modal">Cancel</a>
-			<a href="#" class="button red-button small-button saveBookmark">Create</a>
+			<a href="#" class="button red-button small-button saveBookmark" data-id="-1">Create</a>
 		</div>
 	</div>	
 

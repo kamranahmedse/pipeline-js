@@ -81,6 +81,14 @@ var Shortener = {
                 $('.js-errors').show();
             };
         });
+
+        $(document).on('click', '.edit-bookmark', function ( e ) {
+            
+            e.preventDefault();
+
+            var bookmarkId = $(this).data('id');
+            self.populateBookmarkDetail( bookmarkId );
+        });
     },
 
     validateSaveBookmark : function () {
@@ -115,6 +123,28 @@ var Shortener = {
         }
 
         return noError;
+    },
+
+    populateBookmarkDetail : function ( bookmarkId ) {
+        $.ajax({
+            url : fetchBookmarkUrl,
+            data : { id : bookmarkId },
+            method : 'post',
+            dataType : 'json',
+            beforeSend : function () {},
+            success : function ( data ) {
+                if ( data ) {
+                    $('#new-event-modal').modal();
+                } else {
+                    $.toast({
+                       text : "Bookmark not found!",
+                       allowToastClose : false,
+                       hideAfter : false
+                    });
+                }
+            },
+            complete : function () {}
+        });
     },
 
     instantShorten : function ( url ) {

@@ -98,6 +98,17 @@ class Bookmark extends Eloquent
         return true;
     }
 
+    public function fetch( $id, $userId )
+    {
+        $bookmark = $this->find( $id );
+        
+        if ( $bookmark && ( $bookmark->user_id == $userId ) ) {
+            return $bookmark;
+        }
+
+        return false;
+    }
+
     public function shorten( $longUrl, $userId = false, $doSave )
     {
         // If the user is not logged in
