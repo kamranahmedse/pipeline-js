@@ -89,6 +89,17 @@ var Shortener = {
             var bookmarkId = $(this).data('id');
             self.populateBookmarkDetail( bookmarkId );
         });
+
+        $('#new-event-modal').on('hidden', function () {
+
+            $(this).find('.modal-bmark-save').text('Store a new Bookmark!');
+
+            $(this).find('input[name="url_title"]').val('');
+            $(this).find('input[name="url"]').val('');
+            $(this).find('input[name="shortened_url"]').val('');
+            $(this).find('.saveBookmark').data('id', '')
+                                         .text('Create');
+        });
     },
 
     validateSaveBookmark : function () {
@@ -134,12 +145,26 @@ var Shortener = {
             beforeSend : function () {},
             success : function ( data ) {
                 if ( data ) {
+                    
+                    $('#new-event-modal .modal-bmark-save').text('Update Bookmark!');
+
+                    $('#new-event-modal input[name="url_title"]').val(data.description);
+                    $('#new-event-modal input[name="url"]').val(data.url);
+
+                    $('#new-event-modal .saveBookmark').data('id', data.id)
+                                                       .text('Update');
+
+                    if ( data.shortened_code ) {
+                        $('#new-event-modal input[name="shortened_url"]').val(shortDomain + data.shortened_code);
+                    };
+
                     $('#new-event-modal').modal();
+
                 } else {
                     $.toast({
                        text : "Bookmark not found!",
-                       allowToastClose : false,
-                       hideAfter : false
+                       hideAfter : false,
+                       bgColor : '#0FB190'
                     });
                 }
             },
@@ -186,7 +211,7 @@ var Shortener = {
         $.ajax({
             url : saveBookmarkUrl,
             dataType : 'json',
-            data : { title : $('input[name=url_title]').val(), long_url : $('input[name=url]').val(), shortened_code : shortCode },
+            data : { title : $('input[name=url_title]').val(), long_url : $('input[name=url]').val(), shortened_code : shortCode, id : $('.saveBookmark').data('id') },
             method : 'post',
             beforeSend : function () {},
             success : function ( data ) {
@@ -199,13 +224,12 @@ var Shortener = {
                         hideAfter : 2000,
                         allowToastClose : false,
                         textAlign : 'center',
-                        bgColor : '#e04a40',
+                        bgColor : '#0FB190',
                         position : 'mid-center',
                         afterHidden : function () {
                             window.location.reload();
                         }
                     });
-
 
                 } else {
                     $('.modal-errors').show();

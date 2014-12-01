@@ -17,9 +17,10 @@
 	@show
 
 	<script type="text/javascript">
-		var shortenBookmarkUrl = "{{ URL::route('shortenBookmark') }}";
-		var fetchBookmarkUrl = "{{ URL::route('fetchBookmark') }}";
-		var saveBookmarkUrl = "{{ URL::route('saveBookmark') }}";
+		var shortenBookmarkUrl = "{{ URL::route('shortenBookmark') }}",
+			fetchBookmarkUrl = "{{ URL::route('fetchBookmark') }}",
+			saveBookmarkUrl = "{{ URL::route('saveBookmark') }}",
+			shortDomain = "{{ Config::get('raspis.url') }}";
 	</script>
 	
 </head>
@@ -46,7 +47,7 @@
 	<div class="modal fade unstyled light_grey" id="new-event-modal">
 		<div class="modal-header unstyled">
 			 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			 <h1>Store a new Bookmark</h1>
+			 <h1 class="modal-bmark-save">Store a new Bookmark</h1>
 		</div>
 		<div class="modal-body">
 			<div class="row-fluid">
@@ -80,7 +81,7 @@
 		</div>
 		<div class="modal-footer unstyled" style="margin-bottom:20px;">
 		    <a href="#" class="button small-button" data-dismiss="modal">Cancel</a>
-			<a href="#" class="button red-button small-button saveBookmark" data-id="-1">Create</a>
+			<a href="#" class="button red-button small-button saveBookmark" data-id="">Create</a>
 		</div>
 	</div>	
 

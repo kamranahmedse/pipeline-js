@@ -88,12 +88,18 @@ class Bookmark extends Eloquent
 
     public function saveBookmark( $params, $userId)
     {
-        $this->description = $params['title'];
-        $this->url = $params['long_url'];
-        $this->shortened_code = $params['shortened_code'];
-        $this->user_id = $userId;
+        $toSave = $this;
 
-        $this->save();
+        if ( isset($params['id']) && !empty($params['id']) ) {
+            $toSave = $this->find($params['id']);
+        }
+
+        $toSave->description = $params['title'];
+        $toSave->url = $params['long_url'];
+        $toSave->shortened_code = $params['shortened_code'];
+        $toSave->user_id = $userId;
+
+        $toSave->save();
 
         return true;
     }
