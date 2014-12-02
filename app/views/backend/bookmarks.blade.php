@@ -27,7 +27,7 @@
 
                                     {{ Form::open(array('route' => 'searchBookmark', 'method' => 'get', 'style' => 'margin: 0px;')) }}
                                         {{ Form::text('term', '', array('class' => 'long_url span10', 'style' => 'padding: 32px 10px 30px; margin: 0px; display: block; float: left;', 'placeholder' => 'Search saved URL!')) }}
-                                        {{ Form::submit('Search', array('class' => 'button red-button dashboard-head-btn search-bookmark', 'style' => 'margin-left: 0px; cursor: pointer; box-shadow: none; display: block; float: right; width: 89px; border-radius: 0px; padding: 0px; height: 62px; line-height: 62px;')) }}
+                                        {{ Form::submit('Search', array('class' => 'button red-button dashboard-head-btn search-bookmark', 'style' => 'margin-left: 0px; cursor: pointer; box-shadow: none !important; display: block; float: right; width: 89px; border-radius: 0px; padding: 0px; height: 62px; line-height: 62px; margin-top: 0px !important;')) }}
                                     {{ Form::close() }}
 
                                     <div class="clearfix"></div>

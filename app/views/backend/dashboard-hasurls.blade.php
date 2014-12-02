@@ -19,7 +19,7 @@
 
                                     {{ Form::open(array('url' => URL::route('shortenBookmark'), 'method' => 'post', 'class' => 'hasurls-shortenform' )) }}
                                         {{ Form::text('long_url', Input::old('long_url'), array('class' => 'long_url span10 hasurls-shortenbox', 'placeholder' => 'Put your long URL that is to be shortened, here!')) }}
-                                        {{ Form::submit('Shorten', array('class' => 'button red-button dashboard-head-btn dashboard-hasurls-submitbtn'))}}
+                                        {{ Form::submit('Shorten', array('class' => 'button red-button dashboard-head-btn dashboard-hasurls-submitbtn', 'style' => 'margin-top: 0px !important; box-shadow: none !important;'))}}
                                     {{ Form::close() }}
 
                                     <div class="clearfix"></div>

@@ -1135,6 +1135,13 @@ h3.settings-head {
 	margin: 0px !important;
 }
 
+.modal-error {
+	margin-bottom: 5px;
+	background: #E73B4F;
+	color: #eee;
+	text-shadow: none;
+}
+
 .dashboard-hasurls-submitbtn {
 	margin-left: 0px !important; 
 	cursor: pointer !important; 
@@ -1146,11 +1153,4 @@ h3.settings-head {
 	padding: 0px !important; 
 	height: 62px !important; 
 	line-height: 62px !important;
-}
-
-.modal-error {
-	margin-bottom: 5px;
-	background: #E73B4F;
-	color: #eee;
-	text-shadow: none;
 }
