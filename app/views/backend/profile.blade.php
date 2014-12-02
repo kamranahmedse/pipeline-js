@@ -14,8 +14,7 @@
                 <div class="span10 offset1">
 
                     <div class="events-list p10" style="margin-bottom: 10px;">
-                        {{-- Form::open(array('route' => 'updateProfile', 'method' => 'post')) --}}
-                        {{ Form::model($user, array('route' => 'updateUser', 'method' => 'post')) }}
+                        {{ Form::model($user, array('route' => 'updateProfile', 'method' => 'post')) }}
                             <div class="tab-pane active" id="personal-settings">
                                 <div class="row-fluid">
                                     <div class="span1"></div>
@@ -38,15 +37,17 @@
                                         {{ Form::password('confirmnewpassword', array('id' => 'confirmnewpassword', 'placeholder' => 'Confirm New Password')) }}
 
                                         {{ Form::submit('Save Changes', array('class' => 'button red-button')) }}
-
-                                        <div class="row-fluid">
-                                            <div class="alert error">
-                                                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                <p>Invalid Username entered, it must not contain any spaces</p>
-                                                <p>Password must be 6 to 10 characters</p>
-                                                <p class="m0">Passwords don't match</p>
+                                        
+                                        @if( $errors->has() )
+                                            <div class="row-fluid">
+                                                <div class="alert error">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    @foreach ($errors->all() as $error)
+                                                        <p>{{ $error }}</p>
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                         
                                     </div>
                                     <div class="span1"></div>

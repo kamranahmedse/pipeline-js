@@ -51,9 +51,9 @@ class UserController extends BaseController {
 		return View::make('front.login');
 	}
 
-	public function updateUser()
+	public function updateProfile()
 	{
-		
+		return Input::all();		
 	}
 
 	public function dashboard()
