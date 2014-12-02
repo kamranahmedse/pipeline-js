@@ -17,7 +17,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     );
 
     public static $profileRules = array(
-        
+        'firstname' => 'required',
+        'lastname' => 'required',
+        'password' => 'is_old_password'
+    );
+
+    public static $profileMessages = array(
+        'is_old_password' => 'Old password is not correct.'
     );
 
 	/**

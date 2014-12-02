@@ -25,9 +25,9 @@
                                         <br>
 
                                         {{ Form::text('firstname', null, array('id' => 'firstname', 'placeholder' => 'First Name')) }}
-                                        {{ Form::text('lastname', null, array('id' => 'firstname', 'placeholder' => 'First Name')) }}
+                                        {{ Form::text('lastname', null, array('id' => 'lastname', 'placeholder' => 'Last Name')) }}
 
-                                        {{ Form::text('Username', null, array('id' => 'firstname', 'placeholder' => 'Username', 'readonly' => 'readonly' )) }}
+                                        {{ Form::text('username', null, array('id' => 'username', 'placeholder' => 'Username', 'readonly' => 'readonly' )) }}
 
                                         {{ Form::text('email', null, array('id' => 'email', 'placeholder' => 'Email', 'readonly' => 'readonly' )) }}
 
@@ -43,7 +43,7 @@
                                                 <div class="alert error">
                                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                                                     @foreach ($errors->all() as $error)
-                                                        <p>{{ $error }}</p>
+                                                        <p class="m0">{{ $error }}</p>
                                                     @endforeach
                                                 </div>
                                             </div>

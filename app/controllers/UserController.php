@@ -53,7 +53,7 @@ class UserController extends BaseController {
 
 	public function updateProfile()
 	{
-		$validator = Validator::make( Input::all(), User::$profileRules );
+		$validator = Validator::make( Input::all(), User::$profileRules, User::$profileMessages );
 
 		if ( $validator->passes() ) {
 			

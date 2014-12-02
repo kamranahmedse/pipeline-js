@@ -9,3 +9,7 @@ Validator::extend('not_already_shortened', function ( $attribute, $value, $param
 
     return false;
 });
+
+Validator::extend('is_old_password', function ( $attribute, $value, $parameters ) {
+    return Hash::check($value, Auth::user()->getAuthPassword());
+});
