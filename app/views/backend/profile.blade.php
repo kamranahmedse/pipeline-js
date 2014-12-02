@@ -34,7 +34,7 @@
                                         {{ Form::password('password', array('id' => 'password', 'placeholder' => 'Old Password')) }}
 
                                         {{ Form::password('newpassword', array('id' => 'newpassword', 'placeholder' => 'New Password')) }}
-                                        {{ Form::password('confirmnewpassword', array('id' => 'confirmnewpassword', 'placeholder' => 'Confirm New Password')) }}
+                                        {{ Form::password('newpassword_confirmation', array('id' => 'newpassword_confirmation', 'placeholder' => 'Confirm New Password')) }}
 
                                         {{ Form::submit('Save Changes', array('class' => 'button red-button')) }}
                                         

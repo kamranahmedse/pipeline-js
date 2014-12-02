@@ -55,6 +55,12 @@ class UserController extends BaseController {
 	{
 		$validator = Validator::make( Input::all(), User::$profileRules, User::$profileMessages );
 
+		// Password will be required and it must be equal to the old password
+		// ..if the user has entered a new password
+		$validator->sometimes('password', 'required|is_old_password', function ( $input ) {
+			return isset( $input->newpassword ) && !empty( $input->newpassword );
+		});
+
 		if ( $validator->passes() ) {
 			
 		} else {
