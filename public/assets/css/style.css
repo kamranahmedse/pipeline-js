@@ -398,6 +398,18 @@ a.emph{
 	padding: 19px 19px 16px;
 	margin-left: 19px;
 }
+
+input.button.red-button {
+	width: 100%;
+	color: #f3f3f3;
+	box-shadow: 0 3px 1px #b1453e !important;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 13px;
+	padding: 17px;
+	margin-top: 25px;
+}
+
 .red-button, .red-button:focus{
 	background: #e45f56;
 	color: #f3f3f3;	
@@ -1049,7 +1061,7 @@ h3.settings-head {
 	left: 25px;
 }
 
-.settings-content a.button {
+.settings-content .button {
 	position: relative;
 	display: block;
 	margin-top: 10px;

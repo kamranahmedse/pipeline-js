@@ -51,6 +51,11 @@ class UserController extends BaseController {
 		return View::make('front.login');
 	}
 
+	public function updateUser()
+	{
+		
+	}
+
 	public function dashboard()
 	{
 		$bookmarks = $this->user->getBookmarks( $this->userInfo->id );
@@ -65,7 +70,8 @@ class UserController extends BaseController {
 
 	public function profile()
 	{
-		return View::make('backend.profile');
+		$user = $this->user->find( $this->userInfo->id );
+		return View::make('backend.profile', compact('user'));
 	}
 
 	public function logout()

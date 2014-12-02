@@ -14,75 +14,45 @@
                 <div class="span10 offset1">
 
                     <div class="events-list p10" style="margin-bottom: 10px;">
-                        <div class="tabbable tabs-left">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#personal-settings" data-toggle="tab">Personal Settings</a></li>
-                                <li><a href="#account-settings" data-toggle="tab">Account Settings</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="personal-settings">
-                                    <div class="row-fluid">
-                                        <div class="span1"></div>
-                                        <div class="span10">
+                        {{-- Form::open(array('route' => 'updateProfile', 'method' => 'post')) --}}
+                        {{ Form::model($user, array('route' => 'updateUser', 'method' => 'post')) }}
+                            <div class="tab-pane active" id="personal-settings">
+                                <div class="row-fluid">
+                                    <div class="span1"></div>
+                                    <div class="span10">
 
-                                            <h3 class="settings-head">Personal Settings</h3>
+                                        <br>
+                                        <h3 class="settings-head">Account Settings</h3>
+                                        <br>
 
-                                            <input type="text" name="fullname" id="fullname" placeholder="Full Name" />
+                                        {{ Form::text('firstname', null, array('id' => 'firstname', 'placeholder' => 'First Name')) }}
+                                        {{ Form::text('lastname', null, array('id' => 'firstname', 'placeholder' => 'First Name')) }}
 
-                                            <input type="text" name="dob" id="dob" placeholder="Date of Birth" />
+                                        {{ Form::text('Username', null, array('id' => 'firstname', 'placeholder' => 'Username')) }}
 
-                                            <input type="text" name="address" id="address" placeholder="Address" />
+                                        {{ Form::text('email', null, array('id' => 'email', 'placeholder' => 'Email')) }}
 
-                                            <input type="text" name="contact" id="contact" placeholder="Contact #" />
+                                        {{ Form::password('password', array('id' => 'password', 'placeholder' => 'Old Password')) }}
 
-                                            <a class="button red-button" href="#">Save Changes</a>
+                                        {{ Form::password('newpassword', array('id' => 'newpassword', 'placeholder' => 'New Password')) }}
+                                        {{ Form::password('confirmnewpassword', array('id' => 'confirmnewpassword', 'placeholder' => 'Confirm New Password')) }}
 
+                                        {{ Form::submit('Save Changes', array('class' => 'button red-button')) }}
 
-                                            <div class="row-fluid">
-                                                <div class="alert error">
-                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                    <p>Invalid Username entered, it must not contain any spaces</p>
-                                                    <p>Password must be 6 to 10 characters</p>
-                                                    <p class="m0">Passwords don't match</p>
-                                                </div>
+                                        <div class="row-fluid">
+                                            <div class="alert error">
+                                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                <p>Invalid Username entered, it must not contain any spaces</p>
+                                                <p>Password must be 6 to 10 characters</p>
+                                                <p class="m0">Passwords don't match</p>
                                             </div>
-                                            
                                         </div>
-                                        <div class="span1"></div>
+                                        
                                     </div>
-                                </div>
-                                <div class="tab-pane" id="account-settings">
-                                    <div class="row-fluid">
-                                        <div class="span1"></div>
-                                        <div class="span10">
-
-                                            <h3 class="settings-head">Account Settings</h3>
-
-                                            <input type="text" name="email" id="email" placeholder="Email" readonly="readonly" />
-
-                                            <input type="password" name="old_password" id="old_password" placeholder="Old Password" />
-
-                                            <input type="password" name="new_password" id="new_password" placeholder="New Password" />
-
-                                            <input type="password" name="re_new_password" id="re_new_password" placeholder="Retype New Password" />
-
-                                            <a class="button red-button" href="#">Save Changes</a>
-
-                                            <div class="row-fluid">
-                                                <div class="alert error">
-                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                                    <p>Invalid Username entered, it must not contain any spaces</p>
-                                                    <p>Password must be 6 to 10 characters</p>
-                                                    <p class="m0">Passwords don't match</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="span1"></div>
-                                    </div>
+                                    <div class="span1"></div>
                                 </div>
                             </div>
-                        </div>
+                        {{ Form::close() }}
                     </div>
 
                 </div>
