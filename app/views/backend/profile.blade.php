@@ -27,9 +27,9 @@
                                         {{ Form::text('firstname', null, array('id' => 'firstname', 'placeholder' => 'First Name')) }}
                                         {{ Form::text('lastname', null, array('id' => 'firstname', 'placeholder' => 'First Name')) }}
 
-                                        {{ Form::text('Username', null, array('id' => 'firstname', 'placeholder' => 'Username')) }}
+                                        {{ Form::text('Username', null, array('id' => 'firstname', 'placeholder' => 'Username', 'readonly' => 'readonly' )) }}
 
-                                        {{ Form::text('email', null, array('id' => 'email', 'placeholder' => 'Email')) }}
+                                        {{ Form::text('email', null, array('id' => 'email', 'placeholder' => 'Email', 'readonly' => 'readonly' )) }}
 
                                         {{ Form::password('password', array('id' => 'password', 'placeholder' => 'Old Password')) }}
 

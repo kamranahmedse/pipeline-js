@@ -53,7 +53,13 @@ class UserController extends BaseController {
 
 	public function updateProfile()
 	{
-		return Input::all();		
+		$validator = Validator::make( Input::all(), User::$profileRules );
+
+		if ( $validator->passes() ) {
+			
+		} else {
+			return Redirect::back()->withErrors( $validator );
+		}
 	}
 
 	public function dashboard()

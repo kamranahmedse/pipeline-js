@@ -32,7 +32,7 @@ Route::group(array('prefix' => 'user'), function ()
 		Route::get('dashboard', array('uses' => 'UserController@dashboard', 'as' => 'userDashboard'));
 		Route::get('bookmark', array('uses' => 'BookmarkController@index', 'as' => 'userBookmarks'));
 		Route::get('profile', array('uses' => 'UserController@profile', 'as' => 'userProfile'));
-		Route::post('profile/update', array('uses' => 'UserController@updateProfile', 'as' => 'updateUser'));
+		Route::post('profile/update', array('uses' => 'UserController@updateProfile', 'as' => 'updateProfile'));
 		Route::get('logout', array('uses' => 'UserController@logout', 'as' => 'logoutUser'));
 	});
 });
