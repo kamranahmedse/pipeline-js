@@ -62,7 +62,20 @@ class UserController extends BaseController {
 		});
 
 		if ( $validator->passes() ) {
+		
+			$this->user = $this->user->find( $this->userInfo->id );
+
+			$this->user->firstname = Input::get('firstname');
+			$this->user->lastname = Input::get('lastname');
+
+			if ( Input::get('newpassword', false) ) {
+				$this->user->password = Hash::make( Input::get('newpassword') );
+			}
 			
+			$this->user->save();
+
+			return Redirect::back()->with('message', 'Profile successfuly updated');
+
 		} else {
 			return Redirect::back()->withErrors( $validator );
 		}

@@ -49,6 +49,15 @@
                                             </div>
                                         @endif
                                         
+                                        @if( Session::has('message'))
+                                            <div class="row-fluid" style="margin-top: 20px;">
+                                                <div class="alert alert-success">
+                                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                    <p class="m0">{{ Session::get('message') }}</p>
+                                                </div>
+                                            </div>
+                                        @endif
+
                                     </div>
                                     <div class="span1"></div>
                                 </div>
