@@ -100,6 +100,70 @@ var Shortener = {
             $(this).find('.saveBookmark').data('id', '')
                                          .text('Create');
         });
+
+        $(document).on('click', function ( e ) {
+
+            if ( self.activeTooltip && !$(e.target).hasClass('copy-to-cb') ) {
+                self.activeTooltip.tooltip({trigger: 'manual'}).tooltip('destroy');
+                self.activeTooltip = null;
+            };
+
+        });
+
+        $(document).on('keydown', function ( e ) {
+            // Ctrl + C was pressed
+            if ( e.ctrlKey && ( String.fromCharCode(e.which) === 'c' || String.fromCharCode(e.which) === 'C' ) ) {
+
+                if ( !self.activeTooltip ) { 
+                    return; 
+                };
+
+                var options = {trigger: 'manual'};
+
+                if ( self.activeTooltip.hasClass('long-url')) {
+                    options.placement = 'bottom';
+                };
+
+                self.activeTooltip.attr('title', 'Copied');
+                self.activeTooltip.tooltip({trigger: 'manual'}).tooltip('destroy');
+
+
+                self.activeTooltip.tooltip(options).tooltip('show');
+                
+                window.setTimeout(function () {
+                    self.activeTooltip.tooltip(options).tooltip('destroy');
+                    self.selectText('hit-taker');
+                    self.activeTooltip = null;
+                }, 700);
+            }
+        });
+
+        $(document).on('click', '.copy-to-cb', function( e ){
+            
+            e.preventDefault();
+            
+            if ( self.activeTooltip ) {
+                self.activeTooltip.tooltip({trigger: 'manual'}).tooltip('destroy');
+                self.activeTooltip = null;
+            };
+
+            var options = { placement: 'top', trigger: 'manual' };
+            var toCopy = $(this).closest('.events-list').find('.tobe-copied');
+            
+            if ( $.trim(toCopy.text()) == '' ) {
+                toCopy = $(this).closest('.events-list').find('.long-url');
+                options.placement = 'bottom';
+            };
+
+            toCopy.attr('title', 'Ctr + C')
+            
+            self.selectText( toCopy.attr('id') );
+            toCopy.tooltip(options).tooltip('show');
+
+            self.activeTooltip = toCopy;
+        });
+
+        $('*[title]').tooltip();
     },
 
     validateSaveBookmark : function () {
@@ -134,6 +198,24 @@ var Shortener = {
         }
 
         return noError;
+    },
+
+    selectText : function ( elementId ) {
+        var doc = document
+            , text = doc.getElementById( elementId )
+            , range, selection
+        ;    
+        if (doc.body.createTextRange) {
+            range = document.body.createTextRange();
+            range.moveToElementText(text);
+            range.select();
+        } else if (window.getSelection) {
+            selection = window.getSelection();        
+            range = document.createRange();
+            range.selectNodeContents(text);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
     },
 
     populateBookmarkDetail : function ( bookmarkId ) {
