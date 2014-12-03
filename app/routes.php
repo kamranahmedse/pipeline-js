@@ -51,3 +51,5 @@ Route::group(array('prefix' => 'bookmark'), function(){
 
 	Route::post('shorten', array('uses' => 'BookmarkController@shorten', 'as' => 'shortenBookmark'));
 });
+
+Route::get('/{shortcode}', array('uses' => 'BookmarkController@handleShortcode', 'as' => 'handleShortcode'));

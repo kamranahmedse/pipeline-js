@@ -72,6 +72,11 @@ class Bookmark extends Eloquent
         return $shortCode;
     }
 
+    public function getLongUrl( $shortCode )
+    {
+        return $this->where('shortened_code', $shortCode)->first();
+    }
+
     public function findPotentialShortcode( $url )
     {
         $bookmark = $this->where('url', '=', $url)

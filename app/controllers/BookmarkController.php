@@ -41,6 +41,21 @@ class BookmarkController extends BaseController
         return Response::json($bookmark);
     }
 
+    public function handleShortcode( $shortCode )
+    {
+        $bookmark = $this->bookmark->getLongUrl( $shortCode );
+
+        if ( $bookmark ) {
+
+            $bookmark->clicks = ++$bookmark->clicks;
+            $bookmark->save();
+
+            return Redirect::to( $bookmark->url );
+        } else {
+            return App::abort( 404 );
+        }
+    }
+
     public function saveBookmark()
     {
         $validator = Validator::make( Input::all(), $this->bookmark->getSaveRules() );
