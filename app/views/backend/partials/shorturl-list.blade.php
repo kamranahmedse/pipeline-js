@@ -1,10 +1,14 @@
+{{--*/ 
+    $counter = 0;
+/*--}}
+<div id="hit-taker"></div>
 @foreach ($bookmarks as $bookmark)
     <div class="events-list p10 single-url-item">
         <table class="events-list">
             <tbody>
                 <tr>
                     <td class="wide">
-                        <span class="event-title"><a href="{{ Config::get('raspis.url') . $bookmark->shortened_code }}" target="_blank">{{ Config::get('raspis.url') . $bookmark->shortened_code }}</a></span>
+                        <span class="event-title"><a class="tobe-copied" id="tocopy-{{ $counter++ }}" href="{{ Config::get('raspis.url') . $bookmark->shortened_code }}" target="_blank">{{ Config::get('raspis.url') . $bookmark->shortened_code }}</a></span>
                         <span class="event-location muted"><a href="{{ $bookmark->url }}" target="_blank">{{ $bookmark->url }}</a></span>
                     </td>
                     <td>
@@ -23,7 +27,7 @@
                         </span>
                     </td>
                     <td class="text-right">
-                        <span class="view"><a href="#" class="red-button button small-button">Copy URL</a></span>
+                        <span class="view"><a href="#" class="red-button button small-button copy-to-cb">Copy URL</a></span>
 
                         <span class="remove"><a href="#remove-event-modal" data-toggle="modal" class="ml10 removeUrl" data-id="{{ $bookmark->id }}">Remove</a></span>
 
