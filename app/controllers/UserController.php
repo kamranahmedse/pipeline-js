@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * UserController to handle all the user related actions
+ */ 
 class UserController extends BaseController {
 
 	public function __construct( User $user, Bookmark $bookmark ) 
@@ -12,6 +15,9 @@ class UserController extends BaseController {
 	    $this->userInfo = Auth::user();
 	}
 
+	/**
+	 * Handles the register form submission. Registers a new user if the validations passes or redirects backs with errors.
+	 */ 
 	public function processRegister()
 	{
 		$validator = Validator::make(Input::all(), User::$rules);
@@ -30,6 +36,9 @@ class UserController extends BaseController {
 	    }	
 	}
 
+	/**
+	 * Handles the login form submission. Redirects back with errors if validation fails, logs in the user otherwise
+	 */ 
 	public function processLogin()
 	{
 		if (Auth::attempt(array('username'=>Input::get('username'), 'password'=>Input::get('password')))) {
@@ -41,16 +50,25 @@ class UserController extends BaseController {
 		}	
 	}
 
+	/**
+	 * Register view
+	 */ 
 	public function register()
 	{
 		return View::make('front.register');
 	}
 
+	/**
+	 * Login form
+	 */ 
 	public function login()
 	{
 		return View::make('front.login');
 	}
 
+	/**
+	 * Handles the profile form submission to update the profile
+	 */ 
 	public function updateProfile()
 	{
 		$validator = Validator::make( Input::all(), User::$profileRules, User::$profileMessages );
@@ -81,6 +99,9 @@ class UserController extends BaseController {
 		}
 	}
 
+	/**
+	 * Dashboard view
+	 */ 
 	public function dashboard()
 	{
 		$bookmarks = $this->user->getBookmarks( $this->userInfo->id );
@@ -93,12 +114,18 @@ class UserController extends BaseController {
 		}
 	}
 
+	/**
+	 * Profile View
+	 */ 
 	public function profile()
 	{
 		$user = $this->user->find( $this->userInfo->id );
 		return View::make('backend.profile', compact('user'));
 	}
 
+	/**
+	 * Logs out the user and redirects to the login page
+	 */ 
 	public function logout()
 	{
 		Auth::logout();

@@ -1,11 +1,10 @@
 <?php 
 
 /**
-* BookmarkController that will handle all the processing for bookmarks
+* BookmarkController that will handle all the bookmark related actions
 */
 class BookmarkController extends BaseController
 {
-    
     function __construct(Bookmark $bookmark, User $user)
     {
         $this->beforeFilter('csrf', array('on'=>'post'));
@@ -16,6 +15,9 @@ class BookmarkController extends BaseController
         $this->userInfo = Auth::user();
     }
 
+    /**
+     * Bookmarks page that shows a list of bookmarks that user has saved
+     */ 
     public function index()
     {
         $bookmarks = $this->user->getBookmarks( $this->userInfo->id, true);
@@ -24,6 +26,9 @@ class BookmarkController extends BaseController
                     ->nest('savedBookmarks', 'backend.partials.savedurl-list', compact('bookmarks'));
     }
 
+    /**
+     * Search page - Searches for the specific term and shows the records to the user 
+     */ 
     public function search()
     {
         $term = Input::get('term', '');
@@ -33,6 +38,11 @@ class BookmarkController extends BaseController
                     ->nest('savedBookmarks', 'backend.partials.savedurl-list', compact('bookmarks'));
     }
 
+    /**
+     * Fetches a specific saved bookmark
+     * 
+     * @return string JSON for the bookmark
+     */ 
     public function fetch()
     {
         $id = Input::get('id');
@@ -41,8 +51,15 @@ class BookmarkController extends BaseController
         return Response::json($bookmark);
     }
 
+    /**
+     * Handles the shortcode and redirects the user to the actual associated URL
+     * 
+     * @param string $shortCode Short code i.e. of the shortened URL
+     * @return HTTP-Redirect 404 HTTP Redirect if the URL is not found or 302 redirect to the actual associated URL
+     */ 
     public function handleShortcode( $shortCode )
     {
+        // Find the bookmark against the passed shortcode
         $bookmark = $this->bookmark->getLongUrl( $shortCode );
 
         if ( $bookmark ) {
@@ -50,16 +67,21 @@ class BookmarkController extends BaseController
             $bookmark->clicks = ++$bookmark->clicks;
             $bookmark->save();
 
-            return Redirect::to( $bookmark->url );
+            return Redirect::to( $bookmark->url, 302 );
         } else {
             return App::abort( 404 );
         }
     }
 
+    /**
+     * Saves/Updates the bookmark to database.
+     * @return HTTP-Redirect HTTP Redirect to the initiator with success/failure messages
+     */ 
     public function saveBookmark()
     {
         $validator = Validator::make( Input::all(), $this->bookmark->getSaveRules() );
 
+        // Validation passed
         if ( $validator->passes() ) {
             
             $userId = isset( $this->userInfo->id ) ? $this->userInfo->id : null;
@@ -76,6 +98,9 @@ class BookmarkController extends BaseController
             }
 
         } else {
+            
+            // Validation failed
+
             if ( Request::ajax() ) {
                 return Response::json( $validator->messages() );
             } else {
@@ -84,6 +109,9 @@ class BookmarkController extends BaseController
         }   
     }
 
+    /**
+     * Shortens the passed URL and redirects back with the short URL if shortening was succesful and with errors otherwise
+     */ 
     public function shorten()
     {
         $validator = Validator::make(Input::all(), $this->bookmark->getShortValRules(), $this->bookmark->getShortValMessages());
@@ -113,6 +141,9 @@ class BookmarkController extends BaseController
         }
     }
 
+    /**
+     * Deletes the saved bookmark or the shortened URL found against the passed ID
+     */     
     public function delete()
     {
         $urlId = Input::get('id');
