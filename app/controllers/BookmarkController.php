@@ -101,7 +101,7 @@ class BookmarkController extends BaseController
             if ( Request::ajax() ) {
                 return Response::json(array('short_url' => Config::get('raspis.url') . $code));
             } else {
-                return Redirect::back()->withInput()->withMessage('URL successfully shortened.');
+                return Redirect::back()->withInput()->with(array('message' => 'URL successfully shortened.', 'status' => 'URL_SHORTENED'));
             }
 
         } else {

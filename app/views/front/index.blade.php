@@ -26,7 +26,7 @@
 								Manage, track and promote your URLs in a free and easy manner!
 								{{ HTML::link(URL::route('registerUser'), 'Register for free!') }}
 							</p> 
-							<div class="row-fluid home-shortener-widget">
+							<div class="row-fluid home-shortener-widget" id="shortener-widget">
 
 								{{ Form::open(array('method' => 'post', 'url' => URL::route('shortenBookmark')) )}}
 									{{ Form::text('long_url', Input::old('long_url'), array('placeholder' => 'Put your long URL that is to be shortened, here!', 'class' => 'span10 pull-left' ))}}
@@ -96,4 +96,19 @@
 		<!-- End .main-intro -->
 	</div>
 	<!-- End .main-content -->
+@stop
+
+@section('footerAssets')
+	@parent
+
+	<script type="text/javascript">
+		$(document).on('ready', function (){
+
+			var shortenerEl = $('input[name="long_url"]');
+			if( shortenerEl.val() ) {
+				Shortener.navigateToEl( $('#shorten-url') );
+			}
+		});
+	</script>
+
 @stop

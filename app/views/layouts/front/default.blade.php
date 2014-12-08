@@ -101,7 +101,7 @@
 	@section('footerAssets')
 		<script type="text/javascript" src="{{ URL::to('assets/scripts/jq.js') }}"></script>
 		<script type="text/javascript" src="{{ URL::to('assets/scripts/bootstrap.min.js') }}"></script>
-		<script type="text/javascript" src="{{ URL::to('assets/scripts/main.js') }}"></script>
+		<script type="text/javascript" src="{{ URL::to('assets/scripts/modules/app.js') }}"></script>
 	@show
 
 </body>

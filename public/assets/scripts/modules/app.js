@@ -64,6 +64,8 @@ var Shortener = {
 
         });
 
+        $('input[name="long_url"]').select();
+
         $('.saveBookmark').on('click', function ( e ) {
             
             e.preventDefault();
@@ -164,6 +166,12 @@ var Shortener = {
         });
 
         $('*[title]').tooltip();
+    },
+
+    navigateToEl : function ( el ) {
+        $('html, body').animate({
+            scrollTop: $( el ).offset().top
+        }, 500);
     },
 
     validateSaveBookmark : function () {
