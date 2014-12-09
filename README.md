@@ -1,5 +1,6 @@
 #RasP.is
-[http://rasp.is](RasP.is) is a URL shortener built on top of Laravel. It is not only a URL shortener but also a URL manager that allows the registered users to save and shorten their bookmarks with nice descriptions. Before we go ahead with the detail on how to use it, below is the overview of thee features that [http://rasp.is](RasP.is) provides.
+[http://rasp.is](RasP.is) is a URL shortener built on top of **Laravel 4**. It is not only a URL shortener but also a URL manager that allows the registered users to save and shorten their bookmarks with nice descriptions. Before we go ahead with the detail on how to use it, below is the overview of thee features that [http://rasp.is](RasP.is) provides.
+
 
 #Overview
 - It has a user's module that allows the users to register for an account, login and manage their profile
@@ -10,10 +11,10 @@
 - Registered users can check the number of times their URL was accessed through the shortened URL.
 
 #How to setup
-Follow the below steps to get rasp.is working locally
+Follow the below steps to get it working locally
 
 - Clone the repository
-- Copy it whereever your webserver may access it.
+- Copy it where your webserver may be able to access it.
 - Run the following command inside the project directory
 ```bash
 composer install
@@ -25,7 +26,7 @@ composer install
 ```bash
 php artisan migrate
 ```
-- That's it, you are all set up. You may now use it.
+- That's it, you are all set up ...start shortening your URLs.
 
 #Contribute
 You are welcome to contribute. You may do it so by following steps
