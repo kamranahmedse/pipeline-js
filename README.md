@@ -1,7 +1,7 @@
 > Note that the content on the [live site](http://rasp.is) is still being updated, so don't panic if you see some lorem ipsum here and there ;)
 
 #RasP.is
-[http://rasp.is](RasP.is) is a URL shortener built on top of **Laravel 4**. It is not only a URL shortener but also a URL manager that allows the registered users to save and shorten their bookmarks with nice descriptions. Before we go ahead with the detail on how to use it, below is the overview of thee features that [http://rasp.is](RasP.is) provides.
+[RasP.is](http://rasp.is) is a URL shortener built on top of **Laravel 4**. It is not only a URL shortener but also a URL manager that allows the registered users to save and shorten their bookmarks with nice descriptions. Before we go ahead with the detail on how to use it, below is the overview of thee features that [RasP.is](http://rasp.is) provides.
 
 
 #Overview
