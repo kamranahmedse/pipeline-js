@@ -1,6 +1,6 @@
 # pipeline-js
 
-![Build Status](http://travis-ci.org/kamranahmedse/pipeline-js.svg?branch=master")
+![Build Status](https://travis-ci.org/kamranahmedse/pipeline-js.svg)
 ![Package Version](https://badge.fury.io/js/pipeline-js.svg)
 
 > Hassle free pipeline pattern implementation with the support for sync and async stages
