@@ -10,6 +10,8 @@
 
 Pipeline JS allows you to implement the pipeline pattern while creating reusable pipelines in your Javascript applications. You can create pipelines consisting of one or more stages once and then process them using different payloads. Pipeline processing is initiated by some payload and this payload will be passed from stage to stage in order to complete the required process.
 
+### General Pipeline Example
+
 To demonstrate it using an example, consider a request made to access user by id; the pipeline may consist of stages including `getUserById`, `transformUser`, `convertToJson` and return. And for each next stage, the input comes from the last stage i.e.
 
 ```javascript
@@ -18,6 +20,8 @@ To demonstrate it using an example, consider a request made to access user by id
           ->(Transformed Detail)>>convertToJson()
                   ->(User Detail.json)>>return
 ```
+
+### Sample Programmatic implementation
 
 While using Pipeline JS, it can be written programmatically as
 
@@ -32,6 +36,7 @@ var userJson = userPipeline.process(23);  // JSON detail for the user with ID 23
 ```
 
 Where parameters shown above can be anything invokable. For example example implementation may be something like
+
 ```javascript
 var getUserById   = UserModel.getUserById,
     transformUser = Transformers.transformUser,
