@@ -15,11 +15,11 @@
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "assert": "^1.4.1",
-    "mocha": "^3.0.2"
+    "mocha": "^3.0.2",
+    "q": "^1.4.1"
   },
   "engines": {
     "node": ">= 0.10"

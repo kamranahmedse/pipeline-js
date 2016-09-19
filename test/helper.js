@@ -1,3 +1,5 @@
+var q = require('q');
+
 module.exports = {
 
   doubleSay: function (sayWhat) {
@@ -13,20 +15,20 @@ module.exports = {
   },
 
   capitalizeAsync: function (text) {
-    return new Promise(function (resolve) {
-      return resolve(text[0].toUpperCase() + text.substring(1))
-    });
+    var deferred = q.defer();
+    deferred.resolve(text[0].toUpperCase() + text.substring(1));
+    return deferred.promise;
   },
 
   doubleSayAsync: function (sayWhat) {
-    return new Promise(function (resolve) {
-      return resolve(sayWhat + ', ' + sayWhat);
-    });
+    var deferred = q.defer();
+    deferred.resolve(sayWhat + ', ' + sayWhat);
+    return deferred.promise;
   },
 
   exclaimAsync: function (text) {
-    return new Promise(function (resolve) {
-      return resolve(text + '!');
-    });
+    var deferred = q.defer();
+    deferred.resolve(text + '!');
+    return deferred.promise;
   }
 };
