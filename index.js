@@ -21,13 +21,20 @@ function Pipeline() {
         // as there is no output to start with
         stageOutput = args;
 
-        stages.forEach(function (stage) {
+        stages.forEach(function (stage, counter) {
 
-            //Call the next stage with the last stage output
-            if (typeof stage === 'function') {
-                stageOutput = stage(stageOutput);
+            // Output from the last stage was promise
+            if (typeof stageOutput.then === 'function') {
+                // Call the next stage only when the promise is fulfilled
+                stageOutput = stageOutput.then(stage);
             } else {
-                stageOutput = stage;
+
+                // Otherwise, call the next stage with the last stage output
+                if (typeof stage === 'function') {
+                    stageOutput = stage(stageOutput);
+                } else {
+                    stageOutput = stage;
+                }
             }
 
         });
