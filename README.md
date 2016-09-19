@@ -153,12 +153,14 @@ If any single of the stages returns a promise, `process(payload)` will return a 
 ```javascript
 var Pipeline = require('pipeline-js');
 
+// Gets the user by ID and returns promise
 var getUserById = function (userId) {
   var q = q.defer();
   // ..
   return q.promise;
 };
 
+// Transforms the user
 var transformUser = function (userDetai) {
   return {
     name: userDetail.name,
@@ -167,6 +169,7 @@ var transformUser = function (userDetai) {
   };
 };
 
+// Converts to JSON
 var createJson = function (object) {
   return JSON.stringify(object);
 };
@@ -191,6 +194,10 @@ var output = pipeline.process(263)  // promise will be returned
                         console.log(error);
                      });
 ```
+
+## Sidenote
+
+You may also want to check this [pipeline propose](https://github.com/mindeavor/es-pipeline-operator)
 
 ## Contribution
 
