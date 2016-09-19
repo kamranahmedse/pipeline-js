@@ -70,7 +70,7 @@ Operations in a pipeline i.e. stages can be anything that is callable i.e. closu
 
 In order to create a pipeline, you can either create a pipeline object and call the `pipe` method on it to successively to add the invokable stages
 
-```
+```javascript
 var pipeline = require('pipeline-js');
 
 // Creating pipeline using pipe method
@@ -85,7 +85,7 @@ var output2 = pipeline.process(payload2);
 
 Or you can pass the stages as an array parameter to constructor
 
-```
+```javascript
 var pipeline = require('pipeline-js');
 
 // Creating pipeline using constructor parameterå
@@ -111,7 +111,7 @@ Examples for both the sync and async usage are given below
 
 If none of the stages return promise then `process(payload)` will return concrete value
 
-```
+```javascript
 var addOne = function (x) {
   return x + 1;
 };
@@ -145,7 +145,7 @@ console.log(result); // (int) 339
 
 If any single of the stages returns a promise, `process(payload)` will return a promise
 
-```
+```javascript
 var Pipeline = require('pipeline-js');
 
 var getUserById = function (userId) {
