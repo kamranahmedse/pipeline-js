@@ -1,12 +1,13 @@
 {
-  "name": "pipeline",
+  "name": "pipeline-js",
   "description": "Hassle free pipeline design pattern implementation",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Kamran Ahmed <kamranahmed.se@gmail.com>",
   "keywords": [
     "design-pattern",
-    "pipeline"
+    "pipeline",
+    "pipeline-js"
   ],
   "repository": {
     "type": "git",
