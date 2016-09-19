@@ -2,6 +2,7 @@
 
 ![Build Status](https://travis-ci.org/kamranahmedse/pipeline-js.svg)
 ![Package Version](https://img.shields.io/npm/v/pipeline-js.svg)
+![Code Quality](https://img.shields.io/scrutinizer/g/kamranahmedse/pipeline-js.svg)
 
 > Hassle free pipeline pattern implementation with the support for sync and async stages
 
