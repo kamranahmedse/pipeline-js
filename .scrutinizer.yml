@@ -1,0 +1,6 @@
+tools:
+    external_code_coverage: true
+
+checks:
+    node_js:
+        code_rating: true
