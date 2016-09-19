@@ -69,8 +69,6 @@ describe('pipeline', function () {
         assert.equal(value, 'Hello, hello!');
       })
       .catch(function (error) {
-        console.log(error);
-        test.end()
       });
 
     done();
@@ -89,8 +87,6 @@ describe('pipeline', function () {
         assert.equal(value, 'Hello, hello!');
       })
       .catch(function (error) {
-        console.log(error);
-        test.end()
       });
 
     done();
