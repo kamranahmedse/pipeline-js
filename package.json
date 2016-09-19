@@ -18,6 +18,7 @@
   "dependencies": {
   },
   "devDependencies": {
+    "assert": "^1.4.1",
     "mocha": "^3.0.2"
   },
   "engines": {
