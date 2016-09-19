@@ -1,0 +1,27 @@
+{
+  "name": "pipeline",
+  "description": "Hassle free pipeline design pattern implementation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Kamran Ahmed <kamranahmed.se@gmail.com>",
+  "keywords": [
+    "design-pattern",
+    "pipeline"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kamranahmedse/pipeline"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "^3.0.2"
+  },
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "license": "MIT"
+}
