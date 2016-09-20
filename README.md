@@ -156,10 +156,20 @@ var minusTwo = function (x) {
   return x - 2;
 };
 
+// Without pipeline
+// - Not reusable
+// - Not that clean
+var output1 = minusTwo(square(addOne(10)));
+var output2 = minusTwo(square(addOne(10)));
 
-var someFormula = (new Pipeline()).pipe(addOne)
-                                  .pipe(square)
-                                  .pipe(minusTwo);
+// With Pipeline
+// Reusable with different payload
+// Cleaner
+var someFormula = new Pipeline([
+  addOne,
+  square,
+  minusTwo
+]);
 
 var result = someFormula.process(10);   // 10 + 1  => 11
                                         // 11 * 11 => 121
@@ -170,6 +180,15 @@ var result = someFormula.process(20);   // 20 + 1  => 21
                                         // 21 * 21 => 441
                                         // 441 - 2 => 339
 console.log(result); // (int) 339
+
+// Or you may write the same as
+var someFormula = (new Pipeline()).pipe(addOne)
+                                  .pipe(square)
+                                  .pipe(minusTwo);
+
+var output1 = someFormula.process(20);
+var output2 = someFormula.process(20);
+
 ```
 
 
