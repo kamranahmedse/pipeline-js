@@ -43,13 +43,15 @@ var userJson = userPipeline.process(10);  // JSON detail for the user with ID 10
 var userJson = userPipeline.process(23);  // JSON detail for the user with ID 23
 ```
 
-Where **stages shown above can be anything invokable**. For example example implementation may be something like
+Where **stages shown above can be anything invokable**. The sample implementation for the stages may be something like below
 
 ```javascript
+// For example, methods from some objects
 var getUserById   = UserModel.getUserById,
     transformUser = Transformers.transformUser,
     convertToJson = Utility.convertToJson;
 
+// Or functions
 var getUserById = function (userId) {
     //..
     return promise;
