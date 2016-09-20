@@ -145,7 +145,7 @@ Examples for both the sync and async usage are given below
 
 > How to use when all the stages return concrete values?
 
-If none of the stages return promise then `process(payload)` will return concrete value
+> If none of the stages return promise then `process(payload)` will return concrete value
 
 ```javascript
 var addOne = function (x) {
@@ -202,7 +202,7 @@ var output2 = someFormula.process(20);
 
 > How to use when one or all of the stages return promise?
 
-If any single of the stages returns a promise, `process(payload)` will return a promise
+> If any single of the stages returns a promise, `process(payload)` will return a promise
 
 ```javascript
 var Pipeline = require('pipeline-js');
