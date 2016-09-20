@@ -8,7 +8,7 @@
 
 ## Introduction
 
-Pipeline JS allows you to implement the pipeline pattern while creating reusable pipelines in your Javascript applications. You can create pipelines consisting of one or more stages once and then process them using different payloads. Pipeline processing is initiated by some payload and this payload will be passed from stage to stage in order to complete the required process.
+Pipeline JS allows you to implement the pipeline pattern while creating **reusable pipelines** in your Javascript applications. You can create pipelines consisting of one or more stages once and then **process them using different payloads**. Pipeline processing is initiated by some payload and this payload will be passed from stage to stage in order to complete the required process.
 
 ### General Pipeline Example
 
@@ -43,7 +43,7 @@ var userJson = userPipeline.process(10);  // JSON detail for the user with ID 10
 var userJson = userPipeline.process(23);  // JSON detail for the user with ID 23
 ```
 
-Where parameters shown above can be anything invokable. For example example implementation may be something like
+Where **stages shown above can be anything invokable**. For example example implementation may be something like
 
 ```javascript
 var getUserById   = UserModel.getUserById,
@@ -67,7 +67,7 @@ var convertToJson = function(userDetail) {
 
 ```
 
-Using pipeline will not only allow constructing reusable pipelines but also result in comparatively cleaner and readable code i.e. consider the following example
+Using pipeline will not only allow constructing reusable pipelines but also **result in comparatively cleaner and readable code** i.e. consider the following example
 
 ```javascript
   var output = JSON.stringify(transformFilters(getSelectedFilters()));
@@ -98,7 +98,7 @@ npm install --save pipeline-js
 
 ## Usage
 
-Operations in a pipeline i.e. stages can be anything that is callable i.e. closures and anything that's invokable is good.
+Operations in a pipeline i.e. stages can be **anything that is callable** i.e. closures and anything that's invokable is good.
 
 In order to create a pipeline, you can either pass the stages as an array parameter to constructor
 
@@ -135,7 +135,7 @@ var output2 = pipeline.process(payload2);
 
 ## Sync/Async Usage
 
-The only difference between the synchronous usage and asynchronous usage is how the output is handled. For both types of usages, pipelines are created the same way. The difference is when you call the `process()` method, if the pipeline has all the stages returning concrete output the process method returns concrete value, however if any of the stages returns a promise then the `process` method returns promise and you will have to use `.then()` to get the output.
+The only difference between the synchronous usage and asynchronous usage is how the output is handled. For both types of usages, **pipelines are created the same way**. The difference is when you call the `process()` method, if the pipeline has all the stages returning concrete output the process method returns concrete value, however if any of the stages returns a promise then the `process` method returns promise and you will have to use `.then()` to get the output.
 
 Examples for both the sync and async usage are given below
 
