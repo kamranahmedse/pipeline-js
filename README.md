@@ -271,7 +271,7 @@ var output = pipeline.process(142)  // promise will be returned; since one of th
 
 ## Sidenote
 
-You may also want to check this [pipeline propose](https://github.com/mindeavor/es-pipeline-operator)
+You may also want to check this [pipeline proposal](https://github.com/mindeavor/es-pipeline-operator)
 
 ## Contribution
 
