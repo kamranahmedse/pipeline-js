@@ -44,7 +44,7 @@ function Pipeline(presetStages) {
     stages.forEach(function (stage, counter) {
 
       // Output from the last stage was promise
-      if (typeof stageOutput.then === 'function') {
+      if (stageOutput && typeof stageOutput.then === 'function') {
         // Call the next stage only when the promise is fulfilled
         stageOutput = stageOutput.then(stage);
       } else {
