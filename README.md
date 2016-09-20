@@ -30,6 +30,13 @@ var userPipeline = (new Pipeline()).pipe(getUserById)
                                    .pipe(transformUser)
                                    .pipe(convertToJson);
 
+// Or it can be written as
+var userPipeline = new Pipeline([
+    getUserById,
+    transformUser,
+    convertToJson
+]);
+
 // Then this pipeline can be used with any payload i.e.
 var userJson = userPipeline.process(10);  // JSON detail for the user with ID 10
 var userJson = userPipeline.process(23);  // JSON detail for the user with ID 23
