@@ -67,7 +67,7 @@ var convertToJson = function(userDetail) {
 
 ```
 
-Using pipeline would allow for not only constructing reusable pipelines but also comparatively cleaner and readable code i.e. consider the following example
+Using pipeline will not only allow constructing reusable pipelines but also result in comparatively cleaner and readable code i.e. consider the following example
 
 ```javascript
   var output = JSON.stringify(transformFilters(getSelectedFilters()));
