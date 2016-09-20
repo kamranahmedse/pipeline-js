@@ -143,6 +143,8 @@ Examples for both the sync and async usage are given below
 
 ## Sync Example
 
+> How to use when all the stages return concrete values?
+
 If none of the stages return promise then `process(payload)` will return concrete value
 
 ```javascript
@@ -198,6 +200,8 @@ var output2 = someFormula.process(20);
 
 ## Async Example
 
+> How to use when one or all of the stages return promise?
+
 If any single of the stages returns a promise, `process(payload)` will return a promise
 
 ```javascript
@@ -225,12 +229,13 @@ var createJson = function (object) {
 };
 
 var pipeline = new Pipeline([
-    getUserById,
+    getUserById,    // Returns promise
     transformUser,
     createJson
 ]);
 
-var output = pipeline.process(142)  // promise will be returned; since one of the stages returns a promise
+// process() will return promise; since one of the stages returns a promise
+var output = pipeline.process(142)
                      .then(function(userJson){
                         console.log(userJson);    // (string) {"name": "John Doe", "email": "johndoe@gmail.com", "password": "****"}
                      })
@@ -251,7 +256,7 @@ Altneratively,
 
 ```javascript
 // Same pipeline using `pipe` method
-var pipeline = (new Pipeline()).pipe(getUserById)
+var pipeline = (new Pipeline()).pipe(getUserById)     // Returns promise
                                .pipe(transformUser)
                                .pipe(createJson);
 
