@@ -26,16 +26,16 @@ To demonstrate it using an example, consider a request made to access user by id
 While using Pipeline JS, it can be written programmatically as
 
 ```javascript
-var userPipeline = (new Pipeline()).pipe(getUserById)
-                                   .pipe(transformUser)
-                                   .pipe(convertToJson);
-
-// Or it can be written as
 var userPipeline = new Pipeline([
     getUserById,
     transformUser,
     convertToJson
 ]);
+
+// Or you may write the same as
+var userPipeline = (new Pipeline()).pipe(getUserById)
+                                   .pipe(transformUser)
+                                   .pipe(convertToJson);
 
 // Then this pipeline can be used with any payload i.e.
 var userJson = userPipeline.process(10);  // JSON detail for the user with ID 10
