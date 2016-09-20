@@ -61,6 +61,25 @@ var convertToJson = function(userDetail) {
 
 ```
 
+Using pipeline would allow for not only constructing reusable pipelines but also comparatively cleaner and readable code i.e. consider the following example
+```
+  var output = JSON.stringify(transformFilters(getSelectedFilters()));
+  
+  // It can be transformed to
+  var pipeline = new Pipeline([
+    getSelectedFilters,
+    transformFilters,
+    JSON.stringify
+  ]);
+  
+  // Or maybe
+  var pipeline = (new Pipeline()).pipe(getSelectedFilters)
+                               .pipe(transformFilters)
+                               .pipe(JSON.stringify);
+                               
+  var output = pipeline.process();
+```
+
 ## Installation
 
 Run the below command to install using NPM
