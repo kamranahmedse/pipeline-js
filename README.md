@@ -26,13 +26,14 @@ To demonstrate it using an example, consider a request made to access user by id
 While using Pipeline JS, it can be written programmatically as
 
 ```javascript
+// First syntax
 var userPipeline = new Pipeline([
     getUserById,
     transformUser,
     convertToJson
 ]);
 
-// Or you may write the same as
+// Alternatively, you may write the same using the pipe method
 var userPipeline = (new Pipeline()).pipe(getUserById)
                                    .pipe(transformUser)
                                    .pipe(convertToJson);
