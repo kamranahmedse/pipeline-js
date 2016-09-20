@@ -49,8 +49,6 @@ var getUserById   = UserModel.getUserById,
     transformUser = Transformers.transformUser,
     convertToJson = Utility.convertToJson;
 
-// Or it maybe
-
 var getUserById = function (userId) {
     //..
     return promise;
@@ -80,11 +78,12 @@ Using pipeline would allow for not only constructing reusable pipelines but also
     JSON.stringify
   ]);
   
-  // Or maybe
+  // Or maybe use the alternate syntax
   var pipeline = (new Pipeline()).pipe(getSelectedFilters)
                                  .pipe(transformFilters)
                                  .pipe(JSON.stringify);
-                               
+
+  // Get the output by processing the pipeline 
   var output = pipeline.process();
 ```
 
@@ -100,22 +99,7 @@ npm install --save pipeline-js
 
 Operations in a pipeline i.e. stages can be anything that is callable i.e. closures and anything that's invokable is good.
 
-In order to create a pipeline, you can either create a pipeline object and call the `pipe` method on it to successively to add the invokable stages
-
-```javascript
-var pipeline = require('pipeline-js');
-
-// Creating pipeline using pipe method
-var pipeline = (new Pipeline()).pipe(invokableStage1)
-                               .pipe(invokableStage2)
-                               .pipe(invokableStage3
-
-// Process pipeline with payload1
-var output1 = pipeline.process(payload1);
-var output2 = pipeline.process(payload2);
-```
-
-Or you can pass the stages as an array parameter to constructor
+In order to create a pipeline, you can either pass the stages as an array parameter to constructor
 
 ```javascript
 var pipeline = require('pipeline-js');
@@ -126,6 +110,21 @@ var pipeline = new Pipeline([
   invokableStage2,
   invokableStage3
 ]);
+
+// Process pipeline with payload1
+var output1 = pipeline.process(payload1);
+var output2 = pipeline.process(payload2);
+```
+
+Or you can create a pipeline object and call the `pipe` method on it to successively add the invokable stages
+
+```javascript
+var pipeline = require('pipeline-js');
+
+// Creating pipeline using pipe method
+var pipeline = (new Pipeline()).pipe(invokableStage1)
+                               .pipe(invokableStage2)
+                               .pipe(invokableStage3
 
 // Process pipeline with payload1
 var output1 = pipeline.process(payload1);
@@ -180,8 +179,11 @@ var result = someFormula.process(20);   // 20 + 1  => 21
                                         // 21 * 21 => 441
                                         // 441 - 2 => 339
 console.log(result); // (int) 339
+```
 
-// Or you may write the same as
+Or maybe you can write the same example as
+
+```javascript
 var someFormula = (new Pipeline()).pipe(addOne)
                                   .pipe(square)
                                   .pipe(minusTwo);
@@ -190,7 +192,6 @@ var output1 = someFormula.process(20);
 var output2 = someFormula.process(20);
 
 ```
-
 
 ## Async Example
 
@@ -220,11 +221,13 @@ var createJson = function (object) {
   return JSON.stringify(object);
 };
 
-var pipeline = (new Pipeline()).pipe(getUserById)
-                               .pipe(transformUser)
-                               .pipe(createJson);
+var pipeline = new Pipeline([
+    getUserById,
+    transformUser,
+    createJson
+]);
 
-var output = pipeline.process(142)  // promise will be returned
+var output = pipeline.process(142)  // promise will be returned; since one of the stages returns a promise
                      .then(function(userJson){
                         console.log(userJson);    // (string) {"name": "John Doe", "email": "johndoe@gmail.com", "password": "****"}
                      })
@@ -235,6 +238,23 @@ var output = pipeline.process(142)  // promise will be returned
 var output = pipeline.process(263)  // promise will be returned
                      .then(function(userJson){
                         console.log(userJson);    // (string) {"name": "Jane Doe", "email": "janedoe@gmail.com", "password": "****"}
+                     })
+                     .catch(function(error) {
+                        console.log(error);
+                     });
+```
+
+Altneratively,
+
+```javascript
+// Same pipeline using `pipe` method
+var pipeline = (new Pipeline()).pipe(getUserById)
+                               .pipe(transformUser)
+                               .pipe(createJson);
+
+var output = pipeline.process(142)  // promise will be returned; since one of the stages returns a promise
+                     .then(function(userJson){
+                        console.log(userJson);    // (string) {"name": "John Doe", "email": "johndoe@gmail.com", "password": "****"}
                      })
                      .catch(function(error) {
                         console.log(error);
