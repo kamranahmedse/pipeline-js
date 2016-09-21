@@ -7,6 +7,8 @@
  * @constructor
  */
 function Pipeline(presetStages) {
+  // Stages for the pipeline, either received through
+  // the constructor or the pipe method in prototype
   this.stages = presetStages || [];
 }
 
@@ -32,6 +34,8 @@ Pipeline.prototype.pipe = function (stage) {
  */
 Pipeline.prototype.process = function (args) {
 
+  // Output is same as the passed args, if
+  // there are no stages in the pipeline
   if (this.stages.length === 0) {
     return args;
   }
