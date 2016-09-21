@@ -7,60 +7,58 @@
  * @constructor
  */
 function Pipeline(presetStages) {
+  this.stages = presetStages || [];
+}
 
-  var stages = presetStages || [],
-    stageOutput;
+/**
+ * Adds a new stage. Stage can be a function or some literal value. In case
+ * of literal values. That specified value will be passed to the next stage and the
+ * output from last stage gets ignored
+ *
+ * @param stage
+ * @returns {Pipeline}
+ */
+Pipeline.prototype.pipe = function (stage) {
+  this.stages.push(stage);
 
-  /**
-   * Adds a new stage. Stage can be a function or some literal value. In case
-   * of literal values. That specified value will be passed to the next stage and the
-   * output from last stage gets ignored
-   *
-   * @param stage
-   * @returns {Pipeline}
-   */
-  this.pipe = function (stage) {
-    stages.push(stage);
+  return this;
+};
 
-    return this;
-  };
+/**
+ * Processes the pipeline with passed arguments
+ *
+ * @param args
+ * @returns {*}
+ */
+Pipeline.prototype.process = function (args) {
 
-  /**
-   * Processes the pipeline with passed arguments
-   *
-   * @param args
-   * @returns {*}
-   */
-  this.process = function (args) {
+  if (this.stages.length === 0) {
+    return args;
+  }
 
-    if (stages.length === 0) {
-      return args;
+  // Set the stageOutput to be args
+  // as there is no output to start with
+  var stageOutput = args;
+
+  this.stages.forEach(function (stage, counter) {
+
+    // Output from the last stage was promise
+    if (stageOutput && typeof stageOutput.then === 'function') {
+      // Call the next stage only when the promise is fulfilled
+      stageOutput = stageOutput.then(stage);
+    } else {
+
+      // Otherwise, call the next stage with the last stage output
+      if (typeof stage === 'function') {
+        stageOutput = stage(stageOutput);
+      } else {
+        stageOutput = stage;
+      }
     }
 
-    // Set the stageOutput to be args
-    // as there is no output to start with
-    stageOutput = args;
+  });
 
-    stages.forEach(function (stage, counter) {
-
-      // Output from the last stage was promise
-      if (stageOutput && typeof stageOutput.then === 'function') {
-        // Call the next stage only when the promise is fulfilled
-        stageOutput = stageOutput.then(stage);
-      } else {
-
-        // Otherwise, call the next stage with the last stage output
-        if (typeof stage === 'function') {
-          stageOutput = stage(stageOutput);
-        } else {
-          stageOutput = stage;
-        }
-      }
-
-    });
-
-    return stageOutput;
-  };
-}
+  return stageOutput;
+};
 
 module.exports = Pipeline;
