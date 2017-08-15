@@ -215,7 +215,7 @@ var getUserById = function (userId) {
 };
 
 // Transforms the user
-var transformUser = function (userDetai) {
+var transformUser = function (userDetail) {
   return {
     name: userDetail.name,
     email: userDetail.email,
