@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Creates a new pipeline. Optionally pass an array of stages
@@ -33,7 +33,6 @@ Pipeline.prototype.pipe = function (stage) {
  * @returns {*}
  */
 Pipeline.prototype.process = function (args) {
-
   // Output is same as the passed args, if
   // there are no stages in the pipeline
   if (this.stages.length === 0) {
@@ -44,25 +43,46 @@ Pipeline.prototype.process = function (args) {
   // as there is no output to start with
   var stageOutput = args;
 
-  this.stages.forEach(function (stage, counter) {
-
+  this.stages.forEach((stage, counter) => {
     // Output from the last stage was promise
-    if (stageOutput && typeof stageOutput.then === 'function') {
+    if (stageOutput && typeof stageOutput.then === "function") {
       // Call the next stage only when the promise is fulfilled
-      stageOutput = stageOutput.then(stage);
+      stageOutput = stageOutput
+        .then((stageOutput) => {
+          // If a preStage function was set, run it
+          if (this._preStageFunction)
+            this._preStageFunction(stageOutput, stage, counter);
+
+          return stageOutput;
+        })
+        .then(stage);
     } else {
+      // If a preStage function was set, run it
+      if (this._preStageFunction)
+        this._preStageFunction(stageOutput, stage, counter);
 
       // Otherwise, call the next stage with the last stage output
-      if (typeof stage === 'function') {
+      if (typeof stage === "function") {
         stageOutput = stage(stageOutput);
       } else {
         stageOutput = stage;
       }
     }
-
   });
 
   return stageOutput;
+};
+
+/**
+ * Sets a function that will run before each pipeline
+ * stage. If previous stage output is a Promise,
+ * the preStageFunction will wait for the promise
+ * to resolve before running.
+ *
+ * @param fn
+ */
+Pipeline.prototype.setPreStageFunction = function (fn) {
+  this._preStageFunction = fn;
 };
 
 module.exports = Pipeline;

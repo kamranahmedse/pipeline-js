@@ -269,6 +269,16 @@ var output = pipeline.process(142)  // promise will be returned; since one of th
                      });
 ```
 
+## `preStage`
+
+You may want to run a function before each step runs, for example to log something.
+
+```javascript
+pipeline.setPreStageFunction(function (stagePayload, stageFunction, counter) {
+  console.log(`Beginning stage ${counter}`);
+});
+ ```
+
 ## Sidenote
 
 You may also want to check this [pipeline proposal](https://github.com/mindeavor/es-pipeline-operator)
